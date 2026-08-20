@@ -9,7 +9,6 @@
 
 <link rel="stylesheet" href="style.css">
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 </head>
@@ -45,9 +44,7 @@
 
 
 <button onclick="sendMessage()">
-
 发送留言
-
 </button>
 
 
@@ -60,11 +57,38 @@
 </div>
 
 
+<!-- 留言显示区域 -->
+<div id="list"></div>
+
+
 </div>
 
 
 
 <script>
+
+
+function showNotice(){
+
+
+let notice = document.getElementById("notice");
+
+
+notice.classList.add("show");
+
+
+setTimeout(()=>{
+
+
+notice.classList.remove("show");
+
+
+},3000);
+
+
+}
+
+
 
 
 const SUPABASE_URL =
@@ -73,7 +97,6 @@ const SUPABASE_URL =
 
 const SUPABASE_KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwZGdoZm9icnJ0enhzbGJ0dHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjcyNjcsImV4cCI6MjEwMjc0MzI2N30.D8opVbmJHz4P0e2aKJNIBpQtBK-k57EjBugmm_f5xzE";
-
 
 
 const client =
@@ -88,35 +111,47 @@ SUPABASE_KEY
 
 async function sendMessage(){
 
-// ===== 冷却时间设置 =====
 
-let lastTime = localStorage.getItem("lastMessageTime");
+// ===== 冷却时间 =====
+
+let lastTime =
+localStorage.getItem("lastMessageTime");
+
 
 let now = Date.now();
 
-let cooldown = 30000; // 30秒
+
+let cooldown = 30000;
 
 
-if(lastTime && now - lastTime < cooldown){
+
+if(lastTime && now-lastTime < cooldown){
+
 
 let wait = Math.ceil(
-(cooldown - (now-lastTime))/1000
+(cooldown-(now-lastTime))/1000
 );
+
 
 alert(
 "请等待 "+wait+" 秒后再次留言哦 💗"
 );
 
+
 return;
+
 
 }
 
 
 
-// ===== 获取内容 =====
+
+// ===== 获取输入 =====
+
 
 let name =
 document.getElementById("name").value.trim();
+
 
 
 let content =
@@ -124,13 +159,19 @@ document.getElementById("content").value.trim();
 
 
 
+
+
 if(!name || !content){
+
 
 alert("请填写完整内容 ✨");
 
+
 return;
 
+
 }
+
 
 
 
@@ -140,17 +181,11 @@ return;
 let badWords=[
 
 "垃圾",
-
 "骗子",
-
 "诈骗",
-
 "广告",
-
 "赌博",
-
 "色情",
-
 "辱骂"
 
 ];
@@ -183,9 +218,7 @@ return;
 
 
 
-
-
-// ===== 提交 Supabase =====
+// ===== 上传 Supabase =====
 
 
 let {error}=
@@ -202,8 +235,9 @@ content:content
 
 
 
-
 if(error){
+
+console.log(error);
 
 alert(
 "啊偶，发送失败了呢，请稍后再试呢"
@@ -212,17 +246,12 @@ alert(
 return;
 
 }
-
-
-
-
-// 保存时间
+// 保存发送时间
 
 localStorage.setItem(
 "lastMessageTime",
 Date.now()
 );
-
 
 
 
@@ -241,14 +270,17 @@ document.getElementById("content").value="";
 loadMessages();
 
 
+
 }
 
 
 
 
 
+// ===== 新留言检测 =====
 
-let oldCount = 
+
+let oldCount =
 Number(
 localStorage.getItem("messageCount")
 )
@@ -257,7 +289,10 @@ localStorage.getItem("messageCount")
 
 
 
+
+
 async function loadMessages(){
+
 
 
 let {data,error}=
@@ -274,21 +309,50 @@ ascending:false
 
 
 
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
+
+
+
 let box =
 document.getElementById("list");
+
+
+
+if(!box){
+
+console.log("找不到留言列表 list");
+
+return;
+
+}
+
+
 
 box.innerHTML="";
 
 
-// 新留言检测
+
+
+
+// 新留言提醒
 
 if(data.length > oldCount){
 
-
 showNotice();
 
-
 }
+
+
+
+oldCount = data.length;
+
 
 
 localStorage.setItem(
@@ -296,62 +360,58 @@ localStorage.setItem(
 data.length
 );
 
+
+
+
+
 data.forEach(item=>{
 
 
 box.innerHTML +=
 
+
+
 `
 
 <div class="card">
 
+
 <h3>${item.name}</h3>
 
-<p>${item.message}</p>
 
-<small>${item.created_at}</small>
+<p>${item.content}</p>
+
+
+<small>${item.created_at || ""}</small>
+
 
 </div>
 
+
 `;
+
 
 
 });
 
 
+
 }
 
 
+
+
+
+// 页面打开自动加载留言
 
 loadMessages();
 
 
+
 </script>
 
-function showNotice(){
-
-
-let notice =
-document.getElementById("notice");
-
-
-
-notice.classList.add("show");
-
-
-
-setTimeout(()=>{
-
-
-notice.classList.remove("show");
-
-
-},3000);
-
-
-
-}
 
 </body>
+
 
 </html>
