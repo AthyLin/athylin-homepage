@@ -1,74 +1,524 @@
+/* ===== 全局 ===== */
+
+*{
+    box-sizing:border-box;
+}
+
+
 body{
-font-family:'Microsoft YaHei';
-background:#fff0f7;
+
+    margin:0;
+
+    min-height:100vh;
+
+    font-family:
+    "Microsoft YaHei",
+    sans-serif;
+
+    text-align:center;
+
+    color:#555;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffeaf4,
+        #e8f7ff
+    );
+
+    overflow-x:hidden;
+
 }
+
+
+
+/* ===== 导航栏 ===== */
+
+
 nav{
-background:#ffb6d9;
-padding:15px;
-text-align:center;
+
+    width:100%;
+
+    padding:18px;
+
+    background:#ffffffaa;
+
+    backdrop-filter:blur(10px);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:10;
+
 }
+
+
+
 nav a{
-color:white;
-margin:10px;
-text-decoration:none;
+
+    display:inline-block;
+
+    margin:8px;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    color:#ff78a8;
+
+    background:#fff;
+
+    transition:.3s;
+
 }
+
+
+
+nav a:hover{
+
+    transform:translateY(-3px);
+
+    background:#ffe1ee;
+
+}
+
+
+
+/* ===== 卡片 ===== */
+
+
 .card{
-background:white;
-max-width:700px;
-margin:40px auto;
-padding:30px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 10px 30px #ffd1e5;
+
+    width:80%;
+
+    max-width:700px;
+
+    margin:45px auto;
+
+    padding:35px;
+
+    background:#ffffffcc;
+
+    border-radius:30px;
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.1);
+
+    animation:
+
+    show .8s;
+
 }
-input,textarea{
-width:80%;
-padding:10px;
-margin:8px;
-border-radius:15px;
-border:1px solid #ffc6df;
+
+
+
+@keyframes show{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
 }
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+
+
+/* ===== 首页 ===== */
+
+
+.home h1{
+
+    font-size:42px;
+
+    color:#ff79a9;
+
+}
+
+
+
+.welcome{
+
+    font-size:22px;
+
+}
+
+
+
+.character{
+
+    font-size:80px;
+
+    margin:20px;
+
+}
+
+
+
+/* ===== 按钮 ===== */
+
+
 button{
-background:#ff9ec8;
-color:white;
-border:0;
-padding:10px 25px;
-border-radius:20px;
+
+    border:none;
+
+    padding:
+
+    12px 25px;
+
+    margin:10px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+    45deg,
+    #ff9fc4,
+    #8fdcff
+    );
+
+    transition:.3s;
+
 }
-.bubble{
-background:#ffe5f1;
-margin:12px;
-padding:15px;
-border-radius:20px;
-animation:pop .5s;
+
+
+
+button:hover{
+
+    transform:scale(1.08);
+
 }
+
+
+
+/* ===== 音乐 ===== */
+
+
+audio{
+
+    margin:20px;
+
+    width:250px;
+
+}
+
+
+
+/* ===== 飘落效果 ===== */
+
+
+.floating{
+
+    position:fixed;
+
+    top:80px;
+
+    left:0;
+
+    width:100%;
+
+    pointer-events:none;
+
+    font-size:25px;
+
+    animation:
+
+    float 8s infinite linear;
+
+}
+
+
+
+@keyframes float{
+
+
+0%{
+
+transform:translateY(-50px);
+
+}
+
+
+100%{
+
+transform:translateY(700px);
+
+}
+
+
+}
+
+
+
+/* ===== 点击星星 ===== */
+
+
+.click-star{
+
+    position:absolute;
+
+    font-size:25px;
+
+    animation:
+
+    star 1s;
+
+    pointer-events:none;
+
+}
+
+
+
+@keyframes star{
+
+
+from{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+
+to{
+
+opacity:0;
+
+transform:translateY(-60px) scale(2);
+
+}
+
+
+}
+
+
+
+/* ===== 输入框 ===== */
+
+
+input,
+textarea{
+
+
+    width:80%;
+
+    max-width:400px;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    border:
+
+    2px solid #ffd0e1;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+
+textarea{
+
+    height:120px;
+
+    resize:none;
+
+}
+
+
+
+/* ===== 进度条（军训小游戏使用） ===== */
+
+
+.progress{
+
+    width:80%;
+
+    height:25px;
+
+    margin:20px auto;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+
+#bar{
+
+    height:100%;
+
+    width:0%;
+
+    background:
+
+    linear-gradient(
+    90deg,
+    #8bd3ff,
+    #ff9fc4
+    );
+
+    transition:.5s;
+
+}
+
+
+
+/* ===== 手机适配 ===== */
+
+
+@media(max-width:600px){
+
+
+.card{
+
+width:90%;
+
+padding:25px;
+
+}
+
+
+.home h1{
+
+font-size:32px;
+
+}
+
+
+nav a{
+
+font-size:14px;
+
+margin:4px;
+
+}
+/* ===== 新留言提醒 ===== */
+
 
 #notice{
+
 position:fixed;
-top:-80px;
+
+top:80px;
+
 left:50%;
-transform:translateX(-50%);
-background:#ff9ec8;
-color:white;
+
+transform:
+translateX(-50%)
+scale(0);
+
+
+background:#fff;
+
+color:#ff78a8;
+
 padding:15px 30px;
+
 border-radius:30px;
+
+
+box-shadow:
+0 10px 30px #ddd;
+
+
 font-size:18px;
+
+
+z-index:999;
+
+
+opacity:0;
+
+
 transition:.5s;
-z-index:20;
+
+
 }
+
+
+
 
 #notice.show{
-top:30px;
-animation:bounce .8s;
+
+
+transform:
+translateX(-50%)
+scale(1);
+
+
+opacity:1;
+
+
+animation:
+
+noticeBounce .6s;
+
+
 }
 
-@keyframes bounce{
-0%{transform:translateX(-50%) scale(.5)}
-60%{transform:translateX(-50%) scale(1.2)}
-100%{transform:translateX(-50%) scale(1)}
+
+
+
+@keyframes noticeBounce{
+
+
+0%{
+
+transform:
+translateX(-50%)
+scale(.5);
+
 }
 
-@keyframes pop{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
+
+70%{
+
+transform:
+translateX(-50%)
+scale(1.1);
+
+}
+
+
+100%{
+
+transform:
+translateX(-50%)
+scale(1);
+
+}
+
+
+}
+
 }

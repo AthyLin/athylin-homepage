@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>军训挑战小游戏 🪖</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+
+<nav>
+
+<a href="index.html">
+🌸 首页
+</a>
+
+<a href="military.html">
+🪖 返回军训栏目
+</a>
+
+</nav>
+
+
+
+
+
+<div class="card">
+
+
+
+<h1>
+🪖 军训挑战小游戏
+</h1>
+
+
+
+<div class="character">
+
+🎖️
+
+</div>
+
+
+
+
+<p>
+完成训练任务，提升你的军训值！
+</p>
+
+
+
+
+
+<h2>
+
+军训值：
+
+<span id="score">
+0
+</span>
+
+/40
+
+</h2>
+
+
+
+
+
+<div class="progress">
+
+<div id="bar">
+
+</div>
+
+</div>
+
+
+
+
+
+<p id="message">
+
+等待训练开始...
+
+</p>
+
+
+
+<h2 id="rank">
+
+🌱 新兵蛋子
+
+</h2>
+
+
+
+
+
+<button onclick="finishTask(10,'站军姿')">
+
+🧍 站军姿 +10
+
+</button>
+
+
+
+<br>
+
+
+
+<button onclick="finishTask(10,'踢正步')">
+
+🥾 踢正步 +10
+
+</button>
+
+
+
+<br>
+
+
+
+<button onclick="finishTask(10,'整理内务')">
+
+🛏 整理内务 +10
+
+</button>
+
+
+
+<br>
+
+
+
+<button onclick="finishTask(10,'唱军歌')">
+
+🎵 唱军歌 +10
+
+</button>
+
+
+
+
+
+<br><br>
+
+
+
+<button onclick="resetGame()">
+
+🔄 重新开始
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+let score =
+Number(
+localStorage.getItem(
+"militaryScore"
+)
+)
+||
+0;
+
+
+
+update();
+
+
+
+
+
+function finishTask(point,name){
+
+
+
+if(score>=40){
+
+
+document.getElementById("message")
+.innerHTML=
+"🏆 今日训练已经全部完成！";
+
+
+return;
+
+
+}
+
+
+
+
+score += point;
+
+
+
+localStorage.setItem(
+
+"militaryScore",
+
+score
+
+);
+
+
+
+document.getElementById("message")
+.innerHTML=
+
+"✅ 完成训练：" + name;
+
+
+
+update();
+
+}
+
+
+
+
+function update(){
+
+
+
+document.getElementById("score")
+.innerHTML =
+score;
+
+
+
+let percent =
+(score/40)*100;
+
+
+
+document.getElementById("bar")
+.style.width =
+percent+"%";
+
+
+
+
+let rank =
+document.getElementById("rank");
+
+
+
+if(score>=40){
+
+
+rank.innerHTML=
+"🏆 优秀小战士";
+
+
+}
+
+else if(score>=20){
+
+
+rank.innerHTML=
+"⭐ 合格新兵";
+
+
+}
+
+else{
+
+
+rank.innerHTML=
+"🌱 新兵蛋子";
+
+
+}
+
+
+
+}
+
+
+
+
+function resetGame(){
+
+
+score=0;
+
+
+localStorage.removeItem(
+"militaryScore"
+);
+
+
+document.getElementById("message")
+.innerHTML=
+"重新开始训练！";
+
+
+update();
+
+
+}
+
+
+
+</script>
+
+
+
+
+</body>
+
+</html>

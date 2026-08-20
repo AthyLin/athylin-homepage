@@ -1,14 +1,193 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>clock.html</title><link rel="stylesheet" href="style.css"></head><body><nav><a href="index.html">首页</a><a href="profile.html">个人信息</a><a href="clock.html">时钟</a><a href="message.html">留言板</a></nav><main class="card"><h1>🕒 当前时间</h1><div id="clock"></div><script>setInterval(()=>clock.innerHTML=new Date().toLocaleTimeString(),1000)</script></main><script>
-const items=["🌸","⭐","✨","🌸","💫"];
-function createFloat(){
- const e=document.createElement("div");
- e.className="floating";
- e.innerHTML=items[Math.floor(Math.random()*items.length)];
- e.style.left=Math.random()*100+"vw";
- e.style.animationDuration=(5+Math.random()*8)+"s";
- e.style.fontSize=(15+Math.random()*20)+"px";
- document.body.appendChild(e);
- setTimeout(()=>e.remove(),13000);
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>时间小屋 🕒</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+
+<nav>
+
+<a href="index.html">
+🌸 首页
+</a>
+
+<a href="about.html">
+👤 关于我
+</a>
+
+<a href="clock.html">
+🕒 时钟
+</a>
+
+<a href="cat.html">
+🐈 罗小黑
+</a>
+
+<a href="message.html">
+💌 留言板
+</a>
+
+<a href="military.html">
+🪖 军训栏目
+</a>
+
+</nav>
+
+
+
+
+<div class="card">
+
+
+<h1>
+🕒 时间小屋
+</h1>
+
+
+
+<div class="character">
+
+⏰
+
+</div>
+
+
+
+<h2 id="date">
+
+</h2>
+
+
+
+<h1 id="time">
+
+00:00:00
+
+</h1>
+
+
+
+<p id="greeting">
+
+正在获取时间...
+
+</p>
+
+
+
+</div>
+
+
+
+
+<script>
+
+
+function updateTime(){
+
+
+let now = new Date();
+
+
+
+let year = now.getFullYear();
+
+let month = now.getMonth()+1;
+
+let day = now.getDate();
+
+
+
+let hour = now.getHours();
+
+let minute = now.getMinutes();
+
+let second = now.getSeconds();
+
+
+
+document.getElementById("date").innerHTML =
+
+year+"年 "+
+month+"月 "+
+day+"日";
+
+
+
+document.getElementById("time").innerHTML =
+
+String(hour).padStart(2,"0")
++":"
++
+String(minute).padStart(2,"0")
++":"
++
+String(second).padStart(2,"0");
+
+
+
+
+
+let text="";
+
+
+
+if(hour<6){
+
+text="🌙 夜深了，早点休息哦";
+
 }
-setInterval(createFloat,500);
-</script></body></html>
+
+else if(hour<12){
+
+text="☀️ 上午好，开启美好的一天";
+
+}
+
+else if(hour<18){
+
+text="🌸 下午也要保持元气";
+
+}
+
+else{
+
+text="🌆 晚上好，今天辛苦啦";
+
+}
+
+
+
+document.getElementById("greeting").innerHTML=text;
+
+
+}
+
+
+
+setInterval(updateTime,1000);
+
+
+updateTime();
+
+
+</script>
+
+
+
+</body>
+
+</html>

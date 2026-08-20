@@ -1,61 +1,222 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
+
 <head>
+
 <meta charset="UTF-8">
-<title>云端留言板</title>
+
+<title>留言板</title>
+
 <link rel="stylesheet" href="style.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
+
+
 <body>
+
+
 <nav>
-<a href="index.html">首页</a>
-<a href="profile.html">个人信息</a>
-<a href="clock.html">时钟</a>
-<a href="message.html">留言板</a>
+
+<a href="index.html">🌸 首页</a>
+
 </nav>
 
-<div id="notice">💌 有新留言啦！💌</div>
 
-<main class="card">
-<h1>💌 云端留言板💌</h1>
-<input id="name" placeholder="你的昵称">
+
+<div class="card">
+
+
+<h1>💌 云端留言板</h1>
+
+
+<input id="name" placeholder="你的名字">
+
+
+<br><br>
+
+
+<textarea id="content" placeholder="写留言..."></textarea>
+
+
 <br>
-<textarea id="msg" placeholder="留下你的话吧~"></textarea>
-<br>
-<button onclick="sendMessage()">发送</button>
-<div id="list"></div>
-</main>
+
+
+<button onclick="sendMessage()">
+
+发送留言
+
+</button>
+
+
+
+<h2>留言记录</h2>
+
+
+<div id="notice">
+💌收到新留言啦！💌
+</div>
+
+
+</div>
+
+
 
 <script>
-const SUPABASE_URL="https://ppdghfobrrtzxslbtttp.supabase.co";
-const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwZGdoZm9icnJ0enhzbGJ0dHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjcyNjcsImV4cCI6MjEwMjc0MzI2N30.D8opVbmJHz4P0e2aKJNIBpQtBK-k57EjBugmm_f5xzE";
 
-let oldCount=0;
 
-async function send(){
+const SUPABASE_URL =
+"https://ppdghfobrrtzxslbtttp.supabase.co";
 
-const lastTime = localStorage.getItem("lastMessageTime");
 
-if(lastTime){
+const SUPABASE_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwZGdoZm9icnJ0enhzbGJ0dHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjcyNjcsImV4cCI6MjEwMjc0MzI2N30.D8opVbmJHz4P0e2aKJNIBpQtBK-k57EjBugmm_f5xzE";
 
- const now = Date.now();
 
- if(now - lastTime < 60000){
-   alert("留言太快啦，请一分钟后再试 🌸");
-   return;
- }
+
+const client =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+
+
+
+async function sendMessage(){
+
+// ===== 冷却时间设置 =====
+
+let lastTime = localStorage.getItem("lastMessageTime");
+
+let now = Date.now();
+
+let cooldown = 30000; // 30秒
+
+
+if(lastTime && now - lastTime < cooldown){
+
+let wait = Math.ceil(
+(cooldown - (now-lastTime))/1000
+);
+
+alert(
+"请等待 "+wait+" 秒后再次留言哦 💗"
+);
+
+return;
 
 }
 
 
-await supabaseClient
+
+// ===== 获取内容 =====
+
+let name =
+document.getElementById("name").value.trim();
+
+
+let content =
+document.getElementById("content").value.trim();
+
+
+
+if(!name || !content){
+
+alert("请填写完整内容 ✨");
+
+return;
+
+}
+
+
+
+// ===== 敏感词过滤 =====
+
+
+let badWords=[
+
+"垃圾",
+
+"骗子",
+
+"诈骗",
+
+"广告",
+
+"赌博",
+
+"色情",
+
+"辱骂"
+
+];
+
+
+
+let checkText =
+name + content;
+
+
+
+for(let word of badWords){
+
+
+if(checkText.includes(word)){
+
+
+alert(
+"留言包含不适合内容，请修改后再发送 🛡️"
+);
+
+
+return;
+
+
+}
+
+
+}
+
+
+
+
+
+// ===== 提交 Supabase =====
+
+
+let {error}=
+
+await client
 .from("messages")
-.insert([
-{
-name:name.value,
-content:content.value
-}
-]);
+.insert({
 
+name:name,
+
+content:content
+
+});
+
+
+
+
+if(error){
+
+alert(
+"啊偶，发送失败了呢，请稍后再试呢"
+);
+
+return;
+
+}
+
+
+
+
+// 保存时间
 
 localStorage.setItem(
 "lastMessageTime",
@@ -63,50 +224,134 @@ Date.now()
 );
 
 
-} await fetch(SUPABASE_URL+"/rest/v1/messages",{
- method:"POST",
- headers:{
- "apikey":SUPABASE_KEY,
- "Authorization":"Bearer "+SUPABASE_KEY,
- "Content-Type":"application/json"
- },
- body:JSON.stringify({name,message})
- });
 
- document.getElementById("msg").value="";
- loadMessages(true);
-}
 
-async function loadMessages(showAnimation=false){
- const res=await fetch(SUPABASE_URL+"/rest/v1/messages?select=*&order=id.desc",{
- headers:{
- "apikey":SUPABASE_KEY,
- "Authorization":"Bearer "+SUPABASE_KEY
- }
- });
+alert(
+"💌留言成功啦💌"
+);
 
- const data=await res.json();
 
- if(showAnimation || (oldCount && data.length>oldCount)){
-   showNotice();
- }
 
- oldCount=data.length;
+document.getElementById("name").value="";
 
- document.getElementById("list").innerHTML=data.map(x=>
- `<div class="bubble">💗 ${x.name}: ${x.message}</div>`
- ).join("");
-}
+document.getElementById("content").value="";
 
-function showNotice(){
- const n=document.getElementById("notice");
- n.classList.add("show");
- setTimeout(()=>n.classList.remove("show"),2500);
-}
+
 
 loadMessages();
 
-setInterval(()=>loadMessages(),10000);
+
+}
+
+
+
+
+
+
+let oldCount = 
+Number(
+localStorage.getItem("messageCount")
+)
+||
+0;
+
+
+
+async function loadMessages(){
+
+
+let {data,error}=
+
+await client
+.from("messages")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+
+let box =
+document.getElementById("list");
+
+box.innerHTML="";
+
+
+// 新留言检测
+
+if(data.length > oldCount){
+
+
+showNotice();
+
+
+}
+
+
+localStorage.setItem(
+"messageCount",
+data.length
+);
+
+data.forEach(item=>{
+
+
+box.innerHTML +=
+
+`
+
+<div class="card">
+
+<h3>${item.name}</h3>
+
+<p>${item.content}</p>
+
+<small>${item.created_at}</small>
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+
+loadMessages();
+
+
 </script>
+
+function showNotice(){
+
+
+let notice =
+document.getElementById("notice");
+
+
+
+notice.classList.add("show");
+
+
+
+setTimeout(()=>{
+
+
+notice.classList.remove("show");
+
+
+},3000);
+
+
+
+}
+
 </body>
+
 </html>

@@ -1,14 +1,190 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>index.html</title><link rel="stylesheet" href="style.css"></head><body><nav><a href="index.html">首页</a><a href="profile.html">个人信息</a><a href="clock.html">时钟</a><a href="message.html">留言板</a></nav><main class="card"><h1>🌸~Welcome~🌸</h1><p>--留个言再走吧--</p><div class="character">🐱🐱🐱</div></main><script>
-const items=["🌸","⭐","✨","🌸","💫"];
-function createFloat(){
- const e=document.createElement("div");
- e.className="floating";
- e.innerHTML=items[Math.floor(Math.random()*items.length)];
- e.style.left=Math.random()*100+"vw";
- e.style.animationDuration=(5+Math.random()*8)+"s";
- e.style.fontSize=(15+Math.random()*20)+"px";
- document.body.appendChild(e);
- setTimeout(()=>e.remove(),13000);
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AthyLin的小窝 🌸</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- 飘落装饰 -->
+
+<div class="floating">
+🌸 ✨ ⭐ 🌸 ✨ ⭐
+</div>
+
+
+
+<!-- 导航栏 -->
+
+<nav>
+
+<a href="index.html">
+🌸 首页
+</a>
+
+<a href="about.html">
+👤 关于我
+</a>
+
+<a href="clock.html">
+🕒 时钟
+</a>
+
+<a href="cat.html">
+🐈 罗小黑
+</a>
+
+<a href="message.html">
+💌 留言板
+</a>
+
+<a href="military.html">
+🪖 军训栏目
+</a>
+
+
+</nav>
+
+
+
+
+<!-- 首页内容 -->
+
+<div class="card home">
+
+
+<h1>
+🌸 AthyLin的小窝
+</h1>
+
+
+<p class="welcome">
+欢迎来到我的小世界 ✨
+</p>
+
+
+<p>
+这里记录我的生活、兴趣和青春回忆。
+</p>
+
+
+
+<div class="character">
+
+🐈‍⬛
+
+</div>
+
+
+<p>
+今天也要保持开心哦！
+</p>
+
+
+
+
+<div class="button-box">
+
+
+<a href="military-game.html">
+
+<button>
+
+🪖 开始军训挑战
+
+</button>
+
+</a>
+
+
+<a href="message.html">
+
+<button>
+
+💌 留下一句话
+
+</button>
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<!-- 背景音乐 -->
+
+<audio id="bgm" controls loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+
+<script>
+
+
+// 点击页面产生小星星效果
+
+document.addEventListener(
+"click",
+function(e){
+
+
+let star=document.createElement("span");
+
+
+star.innerHTML="✨";
+
+
+star.className="click-star";
+
+
+star.style.left=e.pageX+"px";
+
+star.style.top=e.pageY+"px";
+
+
+document.body.appendChild(star);
+
+
+
+setTimeout(()=>{
+
+star.remove();
+
+},1000);
+
+
+
 }
-setInterval(createFloat,500);
-</script></body></html>
+
+);
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
