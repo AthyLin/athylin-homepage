@@ -221,36 +221,24 @@ return;
 // ===== 上传 Supabase =====
 
 
-let {error}=
-
-await client
-.from("messages")
+let {error}=await client
+.from("messsage")
 .insert({
-
-name:name,
-
-content:content
-
+    name:name,
+    content:content
 });
 
-
-
 if(error){
-
-console.log(error);
-
-alert(
-"啊偶，发送失败了呢，请稍后再试呢"
-);
-
-return;
-
+    console.log(error);
+    alert(
+        "啊偶，发送失败了呢，请稍后再试呢"
+    );
+    return;
 }
-// 保存发送时间
 
 localStorage.setItem(
-"lastMessageTime",
-Date.now()
+    "lastMessageTime",
+    Date.now()
 );
 
 
