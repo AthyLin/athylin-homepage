@@ -1,15 +1,206 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>留言板</title>
-
-<link rel="stylesheet" href="style.css">
+<title>💌 云端留言板</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Microsoft YaHei";
+    background:
+    linear-gradient(
+        135deg,
+        #ffeef8,
+        #e8f7ff
+    );
+
+    overflow-x:hidden;
+}
+
+
+/* 漂浮元素 */
+
+.float{
+    position:fixed;
+    animation:fall linear infinite;
+    opacity:.8;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-10vh) rotate(0deg);
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+
+}
+
+
+
+nav{
+
+padding:20px;
+
+}
+
+
+nav a{
+
+text-decoration:none;
+color:#ff75b5;
+font-size:18px;
+
+}
+
+
+
+.card{
+
+width:90%;
+max-width:600px;
+
+margin:30px auto;
+
+background:white;
+
+border-radius:25px;
+
+padding:30px;
+
+box-shadow:
+0 10px 30px #ffcce6;
+
+}
+
+
+
+h1{
+
+text-align:center;
+
+color:#ff75b5;
+
+}
+
+
+
+input,textarea{
+
+width:100%;
+
+padding:12px;
+
+margin:10px 0;
+
+border-radius:15px;
+
+border:2px solid #ffd6eb;
+
+font-size:16px;
+
+box-sizing:border-box;
+
+}
+
+
+
+textarea{
+
+height:120px;
+
+resize:none;
+
+}
+
+
+
+button{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:20px;
+
+background:#ff8ac6;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+background:#ff5ead;
+
+}
+
+
+
+.message{
+
+margin-top:15px;
+
+padding:15px;
+
+background:#fff5fa;
+
+border-radius:18px;
+
+animation:show .5s;
+
+}
+
+
+
+@keyframes show{
+
+from{
+
+transform:translateY(20px);
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+
+
+.time{
+
+font-size:12px;
+
+color:#aaa;
+
+}
+
+
+</style>
 
 </head>
 
@@ -19,7 +210,9 @@
 
 <nav>
 
-<a href="index.html">🌸 首页</a>
+<a href="index.html">
+🌸 返回首页
+</a>
 
 </nav>
 
@@ -28,37 +221,39 @@
 <div class="card">
 
 
-<h1>💌 云端留言板</h1>
+<h1>
+💌 云端留言板
+</h1>
 
 
-<input id="name" placeholder="你的名字">
+<input id="name"
+placeholder="你的名字">
 
 
-<br><br>
+<textarea id="content"
+placeholder="写下想说的话...">
+</textarea>
 
-
-<textarea id="content" placeholder="写留言..."></textarea>
-
-
-<br>
 
 
 <button onclick="sendMessage()">
-发送留言
+
+发送留言 ✨
+
 </button>
 
 
+<h2>
+💗 留言墙
+</h2>
 
-<h2>留言记录</h2>
 
+<div id="list">
 
-<div id="notice">
-💌收到新留言啦！💌
+加载中...
+
 </div>
 
-
-<!-- 留言显示区域 -->
-<div id="list"></div>
 
 
 </div>
@@ -68,35 +263,15 @@
 <script>
 
 
-function showNotice(){
-
-
-let notice = document.getElementById("notice");
-
-
-notice.classList.add("show");
-
-
-setTimeout(()=>{
-
-
-notice.classList.remove("show");
-
-
-},3000);
-
-
-}
-
-
+// ===== Supabase配置 =====
 
 
 const SUPABASE_URL =
-"https://ppdghfobrrtzxslbtttp.supabase.co";
+"你的Supabase项目URL";
 
 
 const SUPABASE_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwZGdoZm9icnJ0enhzbGJ0dHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjcyNjcsImV4cCI6MjEwMjc0MzI2N30.D8opVbmJHz4P0e2aKJNIBpQtBK-k57EjBugmm_f5xzE";
+"你的anon key";
 
 
 const client =
@@ -107,51 +282,17 @@ SUPABASE_KEY
 
 
 
+// ===== 冷却时间 =====
+
+const cooldown = 30000;
+
 
 
 async function sendMessage(){
 
 
-// ===== 冷却时间 =====
-
-let lastTime =
-localStorage.getItem("lastMessageTime");
-
-
-let now = Date.now();
-
-
-let cooldown = 30000;
-
-
-
-if(lastTime && now-lastTime < cooldown){
-
-
-let wait = Math.ceil(
-(cooldown-(now-lastTime))/1000
-);
-
-
-alert(
-"请等待 "+wait+" 秒后再次留言哦 💗"
-);
-
-
-return;
-
-
-}
-
-
-
-
-// ===== 获取输入 =====
-
-
 let name =
 document.getElementById("name").value.trim();
-
 
 
 let content =
@@ -159,122 +300,89 @@ document.getElementById("content").value.trim();
 
 
 
-
-
 if(!name || !content){
 
-
-alert("请填写完整内容 ✨");
-
+alert(
+"请填写名字和留言哦 💕"
+);
 
 return;
-
 
 }
 
 
 
-
-// ===== 敏感词过滤 =====
-
-
-let badWords=[
-
-"垃圾",
-"骗子",
-"诈骗",
-"广告",
-"赌博",
-"色情",
-"辱骂"
-
-];
-
-
-
-let checkText =
-name + content;
-
-
-
-for(let word of badWords){
-
-
-if(checkText.includes(word)){
-
-
-alert(
-"留言包含不适合内容，请修改后再发送 🛡️"
+let last =
+localStorage.getItem(
+"lastMessageTime"
 );
 
 
+
+if(
+last &&
+Date.now()-last < cooldown
+){
+
+alert(
+"发送太快啦，请稍等一下哦 🌸"
+);
+
 return;
 
-
 }
 
 
-}
-
-
-
-// ===== 上传 Supabase =====
 
 
 let {error}=await client
+
 .from("messsage")
+
 .insert({
-    name:name,
-    content:content
+
+name:name,
+
+content:content
+
 });
 
-if(error){
-    console.log(error);
-    alert(
-        "啊偶，发送失败了呢，请稍后再试呢"
-    );
-    return;
-}
 
-localStorage.setItem(
-    "lastMessageTime",
-    Date.now()
+
+if(error){
+
+console.log(error);
+
+alert(
+"发送失败，请检查数据库设置"
 );
 
+return;
+
+}
+
+
+
+localStorage.setItem(
+"lastMessageTime",
+Date.now()
+);
+
+
+
+document.getElementById("content").value="";
 
 
 alert(
-"💌留言成功啦💌"
+"留言成功啦 ✨"
 );
-
-
-
-document.getElementById("name").value="";
-
-document.getElementById("content").value="";
 
 
 
 loadMessages();
 
 
-
 }
-
-
-
-
-
-// ===== 新留言检测 =====
-
-
-let oldCount =
-Number(
-localStorage.getItem("messageCount")
-)
-||
-0;
-
 
 
 
@@ -283,11 +391,12 @@ async function loadMessages(){
 
 
 
-let {data,error}=
+let {data,error}=await client
 
-await client
-.from("messages")
+.from("messsage")
+
 .select("*")
+
 .order(
 "created_at",
 {
@@ -307,19 +416,8 @@ return;
 
 
 
-
 let box =
 document.getElementById("list");
-
-
-
-if(!box){
-
-console.log("找不到留言列表 list");
-
-return;
-
-}
 
 
 
@@ -327,57 +425,32 @@ box.innerHTML="";
 
 
 
-
-
-// 新留言提醒
-
-if(data.length > oldCount){
-
-showNotice();
-
-}
-
-
-
-oldCount = data.length;
-
-
-
-localStorage.setItem(
-"messageCount",
-data.length
-);
-
-
-
-
-
 data.forEach(item=>{
 
 
-box.innerHTML +=
+box.innerHTML +=`
+
+<div class="message">
+
+<b>
+🌸 ${item.name}
+</b>
+
+<p>
+${item.content}
+</p>
 
 
+<div class="time">
 
-`
-
-<div class="card">
-
-
-<h3>${item.name}</h3>
-
-
-<p>${item.content}</p>
-
-
-<small>${item.created_at || ""}</small>
-
+${item.created_at || ""}
 
 </div>
 
 
-`;
+</div>
 
+`;
 
 
 });
@@ -388,11 +461,59 @@ box.innerHTML +=
 
 
 
-
-
-// 页面打开自动加载留言
-
 loadMessages();
+
+
+
+
+// ===== 漂浮樱花 =====
+
+
+function createFloat(){
+
+
+let e=document.createElement("div");
+
+e.className="float";
+
+
+e.innerHTML=
+Math.random()>0.5?
+"🌸":"⭐";
+
+
+e.style.left=
+Math.random()*100+"vw";
+
+
+e.style.fontSize=
+15+Math.random()*20+"px";
+
+
+e.style.animationDuration=
+5+Math.random()*8+"s";
+
+
+document.body.appendChild(e);
+
+
+
+setTimeout(()=>{
+
+e.remove();
+
+},12000);
+
+
+
+}
+
+
+
+setInterval(
+createFloat,
+600
+);
 
 
 
@@ -400,6 +521,5 @@ loadMessages();
 
 
 </body>
-
 
 </html>
