@@ -1,0 +1,74 @@
+body{
+font-family:'Microsoft YaHei';
+background:#fff0f7;
+}
+nav{
+background:#ffb6d9;
+padding:15px;
+text-align:center;
+}
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+}
+.card{
+background:white;
+max-width:700px;
+margin:40px auto;
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px #ffd1e5;
+}
+input,textarea{
+width:80%;
+padding:10px;
+margin:8px;
+border-radius:15px;
+border:1px solid #ffc6df;
+}
+button{
+background:#ff9ec8;
+color:white;
+border:0;
+padding:10px 25px;
+border-radius:20px;
+}
+.bubble{
+background:#ffe5f1;
+margin:12px;
+padding:15px;
+border-radius:20px;
+animation:pop .5s;
+}
+
+#notice{
+position:fixed;
+top:-80px;
+left:50%;
+transform:translateX(-50%);
+background:#ff9ec8;
+color:white;
+padding:15px 30px;
+border-radius:30px;
+font-size:18px;
+transition:.5s;
+z-index:20;
+}
+
+#notice.show{
+top:30px;
+animation:bounce .8s;
+}
+
+@keyframes bounce{
+0%{transform:translateX(-50%) scale(.5)}
+60%{transform:translateX(-50%) scale(1.2)}
+100%{transform:translateX(-50%) scale(1)}
+}
+
+@keyframes pop{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}

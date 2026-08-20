@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>profile.html</title><link rel="stylesheet" href="style.css"></head><body><nav><a href="index.html">首页</a><a href="profile.html">个人信息</a><a href="clock.html">时钟</a><a href="message.html">留言板</a></nav><main class="card"><h1>🌷 关于我</h1><p>AthyLin</p><p>暂时没想好这里要写什么</p></main><script>
+const items=["🌸","⭐","✨","🌸","💫"];
+function createFloat(){
+ const e=document.createElement("div");
+ e.className="floating";
+ e.innerHTML=items[Math.floor(Math.random()*items.length)];
+ e.style.left=Math.random()*100+"vw";
+ e.style.animationDuration=(5+Math.random()*8)+"s";
+ e.style.fontSize=(15+Math.random()*20)+"px";
+ document.body.appendChild(e);
+ setTimeout(()=>e.remove(),13000);
+}
+setInterval(createFloat,500);
+</script></body></html>
