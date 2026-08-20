@@ -8,82 +8,55 @@
 
 <title>💌 云端留言板</title>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <style>
 
-*{
-    box-sizing:border-box;
-}
-
-
 body{
-
     margin:0;
-
     min-height:100vh;
-
-    font-family:"Microsoft YaHei";
-
-    background:
-    linear-gradient(
-    135deg,
-    #ffe6f2,
-    #e6f7ff
-    );
-
+    font-family:"Microsoft YaHei",sans-serif;
+    background:linear-gradient(135deg,#ffe6f2,#e6f7ff);
     overflow-x:hidden;
-
 }
-
 
 
 nav{
-
-padding:20px;
-
+    padding:20px;
 }
 
 
 nav a{
-
-text-decoration:none;
-
-color:#ff6fae;
-
-font-size:18px;
-
+    color:#ff70ad;
+    text-decoration:none;
+    font-size:18px;
 }
-
 
 
 .card{
 
-width:90%;
+    width:90%;
+    max-width:600px;
 
-max-width:600px;
+    margin:20px auto;
 
-margin:20px auto;
+    background:white;
 
-background:white;
+    padding:30px;
 
-padding:30px;
+    border-radius:25px;
 
-border-radius:25px;
-
-box-shadow:0 10px 30px #ffc6df;
+    box-shadow:
+    0 10px 30px rgba(255,120,180,.25);
 
 }
 
 
-
 h1{
 
-text-align:center;
-
-color:#ff70ad;
+    text-align:center;
+    color:#ff70ad;
 
 }
 
@@ -92,17 +65,19 @@ color:#ff70ad;
 input,
 textarea{
 
-width:100%;
+    width:100%;
 
-padding:12px;
+    padding:12px;
 
-margin-top:12px;
+    margin-top:12px;
 
-border-radius:15px;
+    border-radius:15px;
 
-border:2px solid #ffd2e6;
+    border:2px solid #ffd1e6;
 
-font-size:16px;
+    font-size:16px;
+
+    outline:none;
 
 }
 
@@ -110,7 +85,9 @@ font-size:16px;
 
 textarea{
 
-height:120px;
+    height:120px;
+
+    resize:none;
 
 }
 
@@ -118,23 +95,23 @@ height:120px;
 
 button{
 
-margin-top:15px;
+    width:100%;
 
-width:100%;
+    margin-top:15px;
 
-padding:15px;
+    padding:15px;
 
-border:0;
+    border:none;
 
-border-radius:20px;
+    border-radius:20px;
 
-background:#ff82bd;
+    background:#ff82bd;
 
-color:white;
+    color:white;
 
-font-size:18px;
+    font-size:18px;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
 
@@ -142,7 +119,7 @@ cursor:pointer;
 
 button:hover{
 
-background:#ff5da5;
+    background:#ff5da5;
 
 }
 
@@ -150,15 +127,15 @@ background:#ff5da5;
 
 .message{
 
-margin-top:15px;
+    margin-top:15px;
 
-padding:15px;
+    padding:15px;
 
-background:#fff5fa;
+    background:#fff5fa;
 
-border-radius:18px;
+    border-radius:18px;
 
-animation:show .5s;
+    animation:show .5s;
 
 }
 
@@ -178,7 +155,7 @@ to{
 
 opacity:1;
 
-transform:none;
+transform:translateY(0);
 
 }
 
@@ -188,9 +165,9 @@ transform:none;
 
 .time{
 
-font-size:12px;
+    color:#999;
 
-color:#aaa;
+    font-size:12px;
 
 }
 
@@ -198,13 +175,13 @@ color:#aaa;
 
 .float{
 
-position:fixed;
+    position:fixed;
 
-top:-30px;
+    top:-30px;
 
-animation:fall linear;
+    animation:fall linear;
 
-z-index:-1;
+    pointer-events:none;
 
 }
 
@@ -212,13 +189,13 @@ z-index:-1;
 
 @keyframes fall{
 
-to{
+    to{
 
-transform:
-translateY(110vh)
-rotate(360deg);
+        transform:
+        translateY(110vh)
+        rotate(360deg);
 
-}
+    }
 
 }
 
@@ -230,7 +207,6 @@ rotate(360deg);
 
 
 <body>
-
 
 
 <nav>
@@ -254,7 +230,7 @@ rotate(360deg);
 
 <input
 id="name"
-placeholder="请输入名字">
+placeholder="请输入你的名字">
 
 
 <textarea
@@ -282,7 +258,6 @@ placeholder="写下想说的话...">
 </div>
 
 
-
 </div>
 
 
@@ -290,9 +265,9 @@ placeholder="写下想说的话...">
 <script>
 
 
-/* =========================
-   Supabase 初始化
-========================= */
+/* =====================
+   Supabase配置
+===================== */
 
 
 const SUPABASE_URL =
@@ -303,17 +278,18 @@ const SUPABASE_KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwZGdoZm9icnJ0enhzbGJ0dHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjcyNjcsImV4cCI6MjEwMjc0MzI2N30.D8opVbmJHz4P0e2aKJNIBpQtBK-k57EjBugmm_f5xzE";
 
 
+
 const client =
 supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
 
-/* =========================
+/* =====================
    发送留言
-========================= */
+===================== */
 
 
 async function sendMessage(){
@@ -338,7 +314,7 @@ document
 if(!name || !content){
 
 alert(
-"请填写完整哦 🌸"
+"请填写名字和留言哦 🌸"
 );
 
 return;
@@ -347,12 +323,14 @@ return;
 
 
 
-// 防刷
 
-let last =
+// 30秒冷却
+
+const last =
 localStorage.getItem(
 "lastMessageTime"
 );
+
 
 
 if(
@@ -361,7 +339,7 @@ Date.now()-last < 30000
 ){
 
 alert(
-"发送太快啦，请等待30秒 💕"
+"发送太快啦，请稍等30秒 💕"
 );
 
 return;
@@ -373,15 +351,16 @@ return;
 
 const {error}=await client
 
-.from("messsage")
+.from("messages")
 
 .insert({
 
 name:name,
 
-content:content
+message:content
 
 });
+
 
 
 
@@ -391,7 +370,7 @@ if(error){
 console.log(error);
 
 alert(
-"发送失败，请检查Supabase设置"
+"发送失败："+error.message
 );
 
 return;
@@ -426,12 +405,13 @@ loadMessages();
 
 
 
-/* =========================
-   加载留言
-========================= */
+/* =====================
+   获取留言
+===================== */
 
 
 async function loadMessages(){
+
 
 
 const {
@@ -442,15 +422,20 @@ error
 
 }=await client
 
-.from("messsage")
+.from("messages")
 
 .select("*")
 
 .order(
+
 "created_at",
+
 {
+
 ascending:false
+
 }
+
 );
 
 
@@ -489,22 +474,24 @@ list.innerHTML += `
 
 
 <p>
-${item.content}
+${item.message}
 </p>
 
 
 
 <div class="time">
 
-${item.created_at || ""}
+${item.created_at}
 
 </div>
+
 
 
 </div>
 
 
 `;
+
 
 
 });
@@ -521,9 +508,9 @@ loadMessages();
 
 
 
-/* =========================
-   樱花星星效果
-========================= */
+/* =====================
+   樱花星星漂浮
+===================== */
 
 
 function createFloat(){
@@ -533,7 +520,9 @@ const el =
 document.createElement("div");
 
 
+
 el.className="float";
+
 
 
 el.innerHTML =
