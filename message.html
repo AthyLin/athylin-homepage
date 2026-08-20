@@ -2,47 +2,39 @@
 <html lang="zh-CN">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>💌 云端留言板</title>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
+
 body{
+
     margin:0;
+
     min-height:100vh;
+
     font-family:"Microsoft YaHei";
+
     background:
     linear-gradient(
-        135deg,
-        #ffeef8,
-        #e8f7ff
+    135deg,
+    #ffe6f2,
+    #e6f7ff
     );
 
     overflow-x:hidden;
-}
-
-
-/* 漂浮元素 */
-
-.float{
-    position:fixed;
-    animation:fall linear infinite;
-    opacity:.8;
-}
-
-@keyframes fall{
-
-0%{
-transform:translateY(-10vh) rotate(0deg);
-}
-
-100%{
-transform:translateY(110vh) rotate(360deg);
-}
 
 }
 
@@ -58,7 +50,9 @@ padding:20px;
 nav a{
 
 text-decoration:none;
-color:#ff75b5;
+
+color:#ff6fae;
+
 font-size:18px;
 
 }
@@ -68,18 +62,18 @@ font-size:18px;
 .card{
 
 width:90%;
+
 max-width:600px;
 
-margin:30px auto;
+margin:20px auto;
 
 background:white;
 
-border-radius:25px;
-
 padding:30px;
 
-box-shadow:
-0 10px 30px #ffcce6;
+border-radius:25px;
+
+box-shadow:0 10px 30px #ffc6df;
 
 }
 
@@ -89,27 +83,26 @@ h1{
 
 text-align:center;
 
-color:#ff75b5;
+color:#ff70ad;
 
 }
 
 
 
-input,textarea{
+input,
+textarea{
 
 width:100%;
 
 padding:12px;
 
-margin:10px 0;
+margin-top:12px;
 
 border-radius:15px;
 
-border:2px solid #ffd6eb;
+border:2px solid #ffd2e6;
 
 font-size:16px;
-
-box-sizing:border-box;
 
 }
 
@@ -119,23 +112,23 @@ textarea{
 
 height:120px;
 
-resize:none;
-
 }
 
 
 
 button{
 
+margin-top:15px;
+
 width:100%;
 
 padding:15px;
 
-border:none;
+border:0;
 
 border-radius:20px;
 
-background:#ff8ac6;
+background:#ff82bd;
 
 color:white;
 
@@ -149,7 +142,7 @@ cursor:pointer;
 
 button:hover{
 
-background:#ff5ead;
+background:#ff5da5;
 
 }
 
@@ -175,15 +168,17 @@ animation:show .5s;
 
 from{
 
-transform:translateY(20px);
-
 opacity:0;
+
+transform:translateY(20px);
 
 }
 
 to{
 
 opacity:1;
+
+transform:none;
 
 }
 
@@ -200,12 +195,42 @@ color:#aaa;
 }
 
 
+
+.float{
+
+position:fixed;
+
+top:-30px;
+
+animation:fall linear;
+
+z-index:-1;
+
+}
+
+
+
+@keyframes fall{
+
+to{
+
+transform:
+translateY(110vh)
+rotate(360deg);
+
+}
+
+}
+
+
 </style>
+
 
 </head>
 
 
 <body>
+
 
 
 <nav>
@@ -226,14 +251,16 @@ color:#aaa;
 </h1>
 
 
-<input id="name"
-placeholder="你的名字">
+
+<input
+id="name"
+placeholder="请输入名字">
 
 
-<textarea id="content"
+<textarea
+id="content"
 placeholder="写下想说的话...">
 </textarea>
-
 
 
 <button onclick="sendMessage()">
@@ -263,15 +290,17 @@ placeholder="写下想说的话...">
 <script>
 
 
-// ===== Supabase配置 =====
+/* =========================
+   Supabase 初始化
+========================= */
 
 
 const SUPABASE_URL =
-"你的Supabase项目URL";
+"https://ppdghfobrrtzxslbtttp.supabase.co";
 
 
 const SUPABASE_KEY =
-"你的anon key";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwZGdoZm9icnJ0enhzbGJ0dHRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNjcyNjcsImV4cCI6MjEwMjc0MzI2N30.D8opVbmJHz4P0e2aKJNIBpQtBK-k57EjBugmm_f5xzE";
 
 
 const client =
@@ -282,28 +311,34 @@ SUPABASE_KEY
 
 
 
-// ===== 冷却时间 =====
-
-const cooldown = 30000;
-
+/* =========================
+   发送留言
+========================= */
 
 
 async function sendMessage(){
 
 
-let name =
-document.getElementById("name").value.trim();
+const name =
+document
+.getElementById("name")
+.value
+.trim();
 
 
-let content =
-document.getElementById("content").value.trim();
+
+const content =
+document
+.getElementById("content")
+.value
+.trim();
 
 
 
 if(!name || !content){
 
 alert(
-"请填写名字和留言哦 💕"
+"请填写完整哦 🌸"
 );
 
 return;
@@ -311,6 +346,8 @@ return;
 }
 
 
+
+// 防刷
 
 let last =
 localStorage.getItem(
@@ -318,14 +355,13 @@ localStorage.getItem(
 );
 
 
-
 if(
 last &&
-Date.now()-last < cooldown
+Date.now()-last < 30000
 ){
 
 alert(
-"发送太快啦，请稍等一下哦 🌸"
+"发送太快啦，请等待30秒 💕"
 );
 
 return;
@@ -335,7 +371,7 @@ return;
 
 
 
-let {error}=await client
+const {error}=await client
 
 .from("messsage")
 
@@ -349,12 +385,13 @@ content:content
 
 
 
+
 if(error){
 
 console.log(error);
 
 alert(
-"发送失败，请检查数据库设置"
+"发送失败，请检查Supabase设置"
 );
 
 return;
@@ -370,7 +407,10 @@ Date.now()
 
 
 
-document.getElementById("content").value="";
+document
+.getElementById("content")
+.value="";
+
 
 
 alert(
@@ -386,12 +426,21 @@ loadMessages();
 
 
 
+/* =========================
+   加载留言
+========================= */
+
 
 async function loadMessages(){
 
 
+const {
 
-let {data,error}=await client
+data,
+
+error
+
+}=await client
 
 .from("messsage")
 
@@ -416,29 +465,33 @@ return;
 
 
 
-let box =
+const list =
 document.getElementById("list");
 
 
 
-box.innerHTML="";
+list.innerHTML="";
 
 
 
 data.forEach(item=>{
 
 
-box.innerHTML +=`
+list.innerHTML += `
+
 
 <div class="message">
+
 
 <b>
 🌸 ${item.name}
 </b>
 
+
 <p>
 ${item.content}
 </p>
+
 
 
 <div class="time">
@@ -449,6 +502,7 @@ ${item.created_at || ""}
 
 
 </div>
+
 
 `;
 
@@ -466,41 +520,51 @@ loadMessages();
 
 
 
-// ===== 漂浮樱花 =====
+
+/* =========================
+   樱花星星效果
+========================= */
 
 
 function createFloat(){
 
 
-let e=document.createElement("div");
-
-e.className="float";
-
-
-e.innerHTML=
-Math.random()>0.5?
-"🌸":"⭐";
+const el =
+document.createElement("div");
 
 
-e.style.left=
+el.className="float";
+
+
+el.innerHTML =
+Math.random()>0.5
+?"🌸"
+:"⭐";
+
+
+
+el.style.left =
 Math.random()*100+"vw";
 
 
-e.style.fontSize=
+
+el.style.fontSize =
 15+Math.random()*20+"px";
 
 
-e.style.animationDuration=
+
+el.style.animationDuration =
 5+Math.random()*8+"s";
 
 
-document.body.appendChild(e);
+
+document.body.appendChild(el);
 
 
 
 setTimeout(()=>{
 
-e.remove();
+el.remove();
 
 },12000);
 
@@ -512,7 +576,7 @@ e.remove();
 
 setInterval(
 createFloat,
-600
+700
 );
 
 
