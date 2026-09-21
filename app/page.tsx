@@ -7,8 +7,7 @@ import MomentsCard from "@/components/home/MomentsCard";
 import NowCard from "@/components/home/NowCard";
 import StatsCard from "@/components/home/StatsCard";
 import { getAllPosts, getTags } from "@/lib/posts";
-import { moments } from "@/data/moments";
-import { photos } from "@/data/photos";
+import { moments, photos } from "@/lib/content";
 import { friends } from "@/data/friends";
 
 export default function HomePage() {
