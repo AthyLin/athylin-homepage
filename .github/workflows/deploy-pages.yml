@@ -32,9 +32,10 @@ jobs:
       - name: 构建静态站点
         env:
           STATIC_EXPORT: "1"
-          # 项目站点部署在 /athylin-homepage/ 这个子路径下
-          # 如果你用的是「用户名.github.io」这种用户站点，把这一行删掉即可
-          NEXT_PUBLIC_BASE_PATH: /athylin-homepage
+          # 绑定自定义域名（athylin.cyou）后站点在根路径，不需要 basePath。
+          # 如果你改用 http://用户名.github.io/仓库名/ 这种子路径访问，
+          # 把下面这行注释打开并改成 /仓库名
+          # NEXT_PUBLIC_BASE_PATH: /athylin-homepage
         run: npm run build
 
       - uses: actions/configure-pages@v5

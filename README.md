@@ -203,7 +203,8 @@ npm start         # 自有服务器启动
 
 启用方法（只需一次）：仓库 **Settings → Pages → Build and deployment → Source 选「GitHub Actions」**。
 
-之后访问：**https://用户名.github.io/仓库名/**
+之后访问：**https://用户名.github.io/仓库名/**（本项目已绑定自定义域名 **https://athylin.cyou**，
+这时站点在根路径，工作流里的 `NEXT_PUBLIC_BASE_PATH` 保持注释状态；`public/CNAME` 里写着域名）。
 
 几点说明：
 
