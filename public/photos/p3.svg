@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" width="1400" height="800" role="img">
+  <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#fbc2eb" />
+    <stop offset="55%" stop-color="#a6c1ee" />
+    <stop offset="100%" stop-color="#f8b8dc" />
+  </linearGradient>
+  <linearGradient id="night" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0%" stop-color="#1b1a45" />
+    <stop offset="55%" stop-color="#2c2566" />
+    <stop offset="100%" stop-color="#101433" />
+  </linearGradient>
+  <linearGradient id="tunnel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3a3564" />
+    <stop offset="100%" stop-color="#15132e" />
+  </linearGradient>
+  <linearGradient id="warm" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#fbc2eb" />
+    <stop offset="100%" stop-color="#f8b8dc" />
+  </linearGradient>
+  <linearGradient id="mist" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0%" stop-color="#a6c1ee" />
+    <stop offset="100%" stop-color="#f8b8dc" />
+  </linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+  </radialGradient></defs>
+  
+  <rect width="1400" height="800" fill="url(#sky)" />
+  <circle cx="1008" cy="224.00000000000003" r="72" fill="#fff6e0" opacity="0.92" />
+  <circle cx="1008" cy="224.00000000000003" r="128" fill="#ffe9b8" opacity="0.22" />
+  
+    <path d="M0 416 L308 273.710442841053 L588 320.1383189111948 L868 293.710442841053 L1148 310.1383189111948 L1400 386 L1400 800 L0 800 Z"
+      fill="rgba(30,27,64,0.35)" />
+    <path d="M0 496 L308 366.26595939695835 L588 439.6017978042364 L868 386.26595939695835 L1148 429.6017978042364 L1400 466 L1400 800 L0 800 Z"
+      fill="rgba(30,27,64,0.5)" />
+    <path d="M0 576 L308 463.07261952757835 L588 478.23774464428425 L868 483.07261952757835 L1148 468.23774464428425 L1400 546 L1400 800 L0 800 Z"
+      fill="rgba(30,27,64,0.68)" />
+    <path d="M0 656 L308 476.1935154646635 L588 587.1108624190092 L868 496.1935154646635 L1148 577.1108624190092 L1400 626 L1400 800 L0 800 Z"
+      fill="rgba(30,27,64,0.9)" />
+  <rect y="688" width="1400" height="112.00000000000001" fill="rgba(18,16,40,0.55)" />
+</svg>

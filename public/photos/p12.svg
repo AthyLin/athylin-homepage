@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" width="1400" height="800" role="img">
+  <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#d4fc79" />
+    <stop offset="55%" stop-color="#96e6a1" />
+    <stop offset="100%" stop-color="#c9f0a3" />
+  </linearGradient>
+  <linearGradient id="night" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0%" stop-color="#1b1a45" />
+    <stop offset="55%" stop-color="#2c2566" />
+    <stop offset="100%" stop-color="#101433" />
+  </linearGradient>
+  <linearGradient id="tunnel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3a3564" />
+    <stop offset="100%" stop-color="#15132e" />
+  </linearGradient>
+  <linearGradient id="warm" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#d4fc79" />
+    <stop offset="100%" stop-color="#c9f0a3" />
+  </linearGradient>
+  <linearGradient id="mist" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0%" stop-color="#96e6a1" />
+    <stop offset="100%" stop-color="#c9f0a3" />
+  </linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+  </radialGradient></defs>
+  
+  <rect width="1400" height="800" fill="url(#mist)" />
+  <circle cx="364" cy="192" r="48" fill="#fffaf0" opacity="0.75" />
+  <path d="M0 336 Q 420 246.1536326855421 770.0000000000001 336 T 1400 316 L 1400 800 L0 800 Z" fill="rgba(38,44,78,0.16)" /><path d="M0 432 Q 420 380.3375517129898 770.0000000000001 432 T 1400 412 L 1400 800 L0 800 Z" fill="rgba(38,44,78,0.30)" /><path d="M0 527.9999999999999 Q 420 420.15671409666527 770.0000000000001 527.9999999999999 T 1400 507.9999999999999 L 1400 800 L0 800 Z" fill="rgba(38,44,78,0.44)" /><path d="M0 624 Q 420 539.423401683569 770.0000000000001 624 T 1400 604 L 1400 800 L0 800 Z" fill="rgba(38,44,78,0.58)" /><path d="M0 719.9999999999999 Q 420 618.5789923518895 770.0000000000001 719.9999999999999 T 1400 699.9999999999999 L 1400 800 L0 800 Z" fill="rgba(38,44,78,0.72)" />
+  <rect y="688" width="1400" height="112.00000000000001" fill="rgba(255,255,255,0.12)" />
+</svg>

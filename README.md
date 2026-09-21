@@ -209,3 +209,49 @@ npm run build && npm start        # 自有服务器（Node 环境，需可写 .d
 
 注意：留言板依赖服务端文件写入，纯静态托管（如 GitHub Pages）下留言接口不可用，
 其余页面不受影响。
+
+### 部署到 Vercel
+
+1. **先把完整项目推上去**（这一步最容易出错）
+
+   用 Git 推送最稳：
+
+   ```bash
+   cd athy-cottage
+   git init
+   git add .
+   git commit -m "init"
+   git branch -M main
+   git remote add origin https://github.com/你的用户名/仓库名.git
+   git push -u origin main
+   ```
+
+   如果用 GitHub 网页上传：**必须把 `app`、`components`、`content`、`data`、`lib`、
+   `public`、`scripts`、`supabase` 这些文件夹一起拖进去**。只选根目录的散落文件
+   （package.json、next.config.ts 之类）会导致仓库里只有文件没有目录，
+   Vercel 构建时报 `Couldn't find any \`pages\` or \`app\` directory`。
+
+   上传后到仓库首页自查一遍：
+
+   - 应该看到 8 个目录：`app` `components` `content` `data` `lib` `public` `scripts` `supabase`
+   - 不应该有：`.env.local`、`node_modules/`、`.next/`
+
+2. **在 Vercel 导入**：vercel.com/new → Import Git Repository → 选中仓库
+   （私有仓库要先给 Vercel 的 GitHub App 授权）
+
+3. **Root Directory 留空** —— 项目文件在仓库根目录。只有当项目被放在子目录里
+   （例如 `athy-cottage/`）才需要填子目录名。
+
+4. **添加环境变量**（Vercel 的文件系统是只读的，不配 Supabase 就发不了留言）
+
+   | Name | Value |
+   | --- | --- |
+   | `SUPABASE_URL` | 你的 Project URL |
+   | `SUPABASE_SERVICE_ROLE_KEY` | service_role 密钥（不是 anon） |
+
+5. **Deploy**，然后打开 `你的域名/messages`：表单下方显示「存储：Supabase 云端」即成功。
+
+> 常见坑：
+> - 提交了 `.env.local`：`.gitignore` 虽然忽略了它，但网页上传会绕过忽略规则，发现后要立刻从仓库里删除；`service_role` 密钥一旦进过仓库就必须去 Supabase 后台轮换。
+> - 部署记录里是 Failed：点进去看 Build Logs 的第一行报错，多半是缺目录或 Node 版本问题。
+> - 部署记录是空的：说明仓库没连到 Vercel 项目，去 vercel.com/new 重新导入。

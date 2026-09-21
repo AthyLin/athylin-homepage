@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img">
+  <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#fdcbf1" />
+    <stop offset="55%" stop-color="#e6dee9" />
+    <stop offset="100%" stop-color="#c7d2fe" />
+  </linearGradient>
+  <linearGradient id="night" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0%" stop-color="#1b1a45" />
+    <stop offset="55%" stop-color="#2c2566" />
+    <stop offset="100%" stop-color="#101433" />
+  </linearGradient>
+  <linearGradient id="tunnel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3a3564" />
+    <stop offset="100%" stop-color="#15132e" />
+  </linearGradient>
+  <linearGradient id="warm" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#fdcbf1" />
+    <stop offset="100%" stop-color="#c7d2fe" />
+  </linearGradient>
+  <linearGradient id="mist" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0%" stop-color="#e6dee9" />
+    <stop offset="100%" stop-color="#c7d2fe" />
+  </linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+  </radialGradient></defs>
+  
+  <rect width="900" height="1200" fill="url(#sky)" />
+  <circle cx="450" cy="540" r="120" fill="#fff3d6" opacity="0.85" />
+  <rect y="624" width="900" height="576" fill="rgba(20,32,72,0.45)" />
+  <path d="M378 636 L522 636 L558 864 L342 864 Z" fill="rgba(255,240,200,0.35)" />
+  <path d="M0 696 Q 225 685.3115833047777 450 696 T 900 689.5869499828666 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.06)" /><path d="M0 762 Q 225 750.3675694959238 450 762 T 900 755.0205416975543 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.09)" /><path d="M0 827.9999999999999 Q 225 821.7823869176208 450 827.9999999999999 T 900 824.2694321505725 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.12)" /><path d="M0 894 Q 225 882.7512372499332 450 894 T 900 887.2507423499599 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.15)" /><path d="M0 959.9999999999999 Q 225 950.350629357621 450 959.9999999999999 T 900 954.2103776145725 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.18)" /><path d="M0 1026 Q 225 1008.4986785436049 450 1026 T 900 1015.4992071261629 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.21)" /><path d="M0 1092 Q 225 1082.0699782893062 450 1092 T 900 1086.0419869735838 L 900 1200 L0 1200 Z"
+      fill="rgba(255,255,255,0.24)" />
+</svg>

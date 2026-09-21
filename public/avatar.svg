@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img">
+  <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#fbc2eb" />
+    <stop offset="55%" stop-color="#a18cd1" />
+    <stop offset="100%" stop-color="#c3a6f5" />
+  </linearGradient>
+  <linearGradient id="night" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0%" stop-color="#1b1a45" />
+    <stop offset="55%" stop-color="#2c2566" />
+    <stop offset="100%" stop-color="#101433" />
+  </linearGradient>
+  <linearGradient id="tunnel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3a3564" />
+    <stop offset="100%" stop-color="#15132e" />
+  </linearGradient>
+  <linearGradient id="warm" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#fbc2eb" />
+    <stop offset="100%" stop-color="#c3a6f5" />
+  </linearGradient>
+  <linearGradient id="mist" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0%" stop-color="#a18cd1" />
+    <stop offset="100%" stop-color="#c3a6f5" />
+  </linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+  </radialGradient></defs>
+  
+  <rect width="400" height="400" fill="url(#sky)" />
+  <circle cx="288" cy="120" r="120" fill="rgba(255,255,255,0.25)" />
+  <g transform="translate(0 16)">
+    <path d="M118 168 L134 96 L196 140 Z" fill="rgba(56,42,92,0.9)" />
+    <path d="M282 168 L266 96 L204 140 Z" fill="rgba(56,42,92,0.9)" />
+    <circle cx="200" cy="200" r="102" fill="rgba(58,44,96,0.92)" />
+    <circle cx="168" cy="190" r="11" fill="#fff7e6" />
+    <circle cx="232" cy="190" r="11" fill="#fff7e6" />
+    <path d="M180 232 q20 18 40 0" stroke="#fff7e6" stroke-width="7" fill="none" stroke-linecap="round" />
+    <path d="M120 176 h34 M246 176 h34" stroke="rgba(255,255,255,0.55)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="150" cy="216" r="12" fill="rgba(255,160,180,0.4)" />
+    <circle cx="250" cy="216" r="12" fill="rgba(255,160,180,0.4)" />
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 900" width="1000" height="900" role="img">
+  <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#4facfe" />
+    <stop offset="55%" stop-color="#00f2fe" />
+    <stop offset="100%" stop-color="#5ee7df" />
+  </linearGradient>
+  <linearGradient id="night" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0%" stop-color="#1b1a45" />
+    <stop offset="55%" stop-color="#2c2566" />
+    <stop offset="100%" stop-color="#101433" />
+  </linearGradient>
+  <linearGradient id="tunnel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3a3564" />
+    <stop offset="100%" stop-color="#15132e" />
+  </linearGradient>
+  <linearGradient id="warm" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#4facfe" />
+    <stop offset="100%" stop-color="#5ee7df" />
+  </linearGradient>
+  <linearGradient id="mist" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0%" stop-color="#00f2fe" />
+    <stop offset="100%" stop-color="#5ee7df" />
+  </linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+  </radialGradient></defs>
+  
+  <rect width="1000" height="900" fill="url(#warm)" />
+  <rect x="80" y="54" width="840" height="450" rx="18" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.4)" />
+  <line x1="500" y1="54" x2="500" y2="504.00000000000006" stroke="rgba(255,255,255,0.35)" stroke-width="6" />
+  <line x1="80" y1="279" x2="920" y2="279" stroke="rgba(255,255,255,0.32)" stroke-width="6" />
+  <rect y="522" width="1000" height="378" fill="rgba(60,36,24,0.5)" />
+  <ellipse cx="420" cy="702" rx="130" ry="27" fill="rgba(255,255,255,0.18)" />
+  <path d="M330 612 L510 612 L485 738 L355 738 Z" fill="rgba(255,252,244,0.9)" />
+  <ellipse cx="420" cy="612" rx="90" ry="19.799999999999997" fill="rgba(120,72,40,0.85)" />
+  <path d="M510 648 q50 0 50 27 q0 27 -50 27" fill="none" stroke="rgba(255,252,244,0.85)" stroke-width="6" />
+  <path d="M600 558 q0 -36 20 -49.5" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="4" />
+  <path d="M660 558 q0 -45 20 -63.00000000000001" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="4" />
+</svg>

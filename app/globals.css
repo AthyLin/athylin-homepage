@@ -1,0 +1,468 @@
+@import "tailwindcss";
+
+/* Tailwind CSS 4：类名式暗色模式（.dark 挂在 html 上） */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", ui-sans-serif,
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --color-brand-50: #f2f1ff;
+  --color-brand-100: #e6e3ff;
+  --color-brand-200: #cfc9ff;
+  --color-brand-300: #b0a5ff;
+  --color-brand-400: #9a86fb;
+  --color-brand-500: #8b5cf6;
+  --color-brand-600: #7c3aed;
+  --color-brand-700: #6d28d9;
+  --color-brand-800: #5b21b6;
+  --color-brand-900: #4c1d95;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-twinkle: twinkle 3.5s ease-in-out infinite;
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.6s ease-out infinite;
+}
+
+/* ============ 基础排版 ============ */
+
+@layer base {
+  html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eef1ff 0%, #fbeffb 30%, #eaf6ff 60%, #f3edff 100%);
+    background-size: 400% 400%;
+    animation: gradient-flow 24s ease infinite;
+    color: #1f2937;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, #0b1026 0%, #1a1145 25%, #0d1b3e 50%, #1e1145 75%, #0b1026 100%);
+    background-size: 400% 400%;
+    animation: gradient-flow 24s ease infinite;
+    color: #e5e7eb;
+  }
+
+  /* 页面文字默认不可选中（输入框、代码与正文除外），避免拖拽时到处都是蓝框 */
+  body {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable],
+  .prose,
+  pre,
+  code {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.25);
+  }
+
+  /* 滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.32);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.7);
+  }
+
+  /* Firefox 滚动条 */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.35) transparent;
+  }
+}
+
+/* ============ 玻璃拟态组件类 ============ */
+
+/*
+ * 放在 components 层里：Tailwind 的工具类（utilities 层）可以覆盖这里的属性，
+ * 例如 <div className="glass-card absolute"> 里的 absolute 能正常生效。
+ */
+@layer components {
+  .glass-card {
+  position: relative;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, background 0.35s ease;
+}
+
+  .glass-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(31, 38, 135, 0.2);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+  .dark .glass-card {
+  background: rgba(30, 41, 59, 0.45);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+  .dark .glass-card-hover:hover {
+  background: rgba(30, 41, 59, 0.6);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+  /* 卡片顶部高光，让玻璃更有厚度 */
+  .glass-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+
+  .dark .glass-sheen::after {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 45%);
+}
+
+  .glass-button {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.28s ease;
+}
+
+  .glass-button:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(31, 38, 135, 0.18);
+}
+
+  .dark .glass-button {
+  background: rgba(51, 65, 85, 0.5);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+  .dark .glass-button:hover {
+  background: rgba(71, 85, 105, 0.65);
+}
+
+  .glass-input {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.7rem 1rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+  .glass-input::placeholder {
+  color: rgba(107, 114, 128, 0.75);
+}
+
+  .glass-input:focus {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+}
+
+  .dark .glass-input {
+  background: rgba(51, 65, 85, 0.45);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e5e7eb;
+}
+
+  .dark .glass-input::placeholder {
+  color: rgba(148, 163, 184, 0.7);
+}
+
+  .glass-pill {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+  .dark .glass-pill {
+  background: rgba(51, 65, 85, 0.45);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+  .gradient-text {
+  background: linear-gradient(120deg, #7c3aed, #db2777 45%, #0ea5e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+  .dark .gradient-text {
+  background: linear-gradient(120deg, #c4b5fd, #f9a8d4 45%, #7dd3fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+}
+
+/* ============ 动画 ============ */
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(4%, -6%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-5%, 4%, 0) scale(0.96);
+  }
+}
+
+.animate-blob {
+  animation: blob-drift 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============ Markdown 正文排版 ============ */
+
+.prose {
+  line-height: 1.9;
+  color: #374151;
+  word-break: break-word;
+}
+
+.dark .prose {
+  color: #cbd5e1;
+}
+
+.prose > * + * {
+  margin-top: 1.1em;
+}
+
+.prose h2 {
+  margin-top: 2.2em;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #111827;
+  scroll-margin-top: 6rem;
+}
+
+.prose h3 {
+  margin-top: 1.8em;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #111827;
+  scroll-margin-top: 6rem;
+}
+
+.dark .prose h2,
+.dark .prose h3 {
+  color: #f1f5f9;
+}
+
+.prose h2::before {
+  content: "#";
+  margin-right: 0.4em;
+  color: rgba(139, 92, 246, 0.7);
+  font-weight: 600;
+}
+
+.prose a {
+  color: #7c3aed;
+  text-decoration: underline;
+  text-decoration-color: rgba(124, 58, 237, 0.35);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  text-decoration-color: #7c3aed;
+}
+
+.dark .prose a {
+  color: #c4b5fd;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose blockquote {
+  border-left: 3px solid rgba(139, 92, 246, 0.6);
+  border-radius: 0 12px 12px 0;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 0.9em 1.2em;
+  color: #4b5563;
+}
+
+.dark .prose blockquote {
+  background: rgba(51, 65, 85, 0.4);
+  color: #cbd5e1;
+}
+
+.prose code {
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.12);
+  padding: 0.15em 0.42em;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: #6d28d9;
+}
+
+.dark .prose code {
+  background: rgba(148, 163, 184, 0.18);
+  color: #ddd6fe;
+}
+
+.prose pre {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #1e1b33;
+  padding: 1.1rem 1.25rem;
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  color: #e9e5ff;
+}
+
+.prose img {
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(31, 38, 135, 0.16);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 0.55em 0.8em;
+  text-align: left;
+}
+
+.prose th {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.prose hr {
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.prose-title {
+  font-size: 1.9rem;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #111827;
+}
+
+.dark .prose-title {
+  color: #f8fafc;
+}
