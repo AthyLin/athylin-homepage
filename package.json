@@ -10,13 +10,10 @@
     "build": "next build",
     "start": "next start",
     "assets": "node scripts/gen-assets.mjs && node scripts/gen-favicon.mjs && node scripts/gen-music-manifest.mjs",
-    "doctor": "node scripts/check-supabase.mjs",
     "audit": "node scripts/audit.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.116.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^13.4.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.47.0",
     "marked": "^18.0.13",

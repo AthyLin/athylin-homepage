@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import { siteConfig } from "@/site.config";
+import { isAudioAvailable } from "@/lib/music-files";
 
 export type Track = (typeof siteConfig.playlist)[number];
 
@@ -22,6 +23,8 @@ type MusicContextValue = {
   progress: number;
   /** true 表示音频文件不存在，处于「演示模式」：进度用计时器模拟 */
   demo: boolean;
+  /** 当前这首歌的音频文件是否存在于 public/music/ */
+  available: boolean;
   select: (index: number) => void;
   toggle: () => void;
   next: () => void;
@@ -36,10 +39,17 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [demo, setDemo] = useState(false);
+  const [demo, setDemo] = useState(() => !isAudioAvailable(siteConfig.playlist[0]?.src ?? ""));
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const track = tracks[index] ?? tracks[0];
+  const available = isAudioAvailable(track.src);
+  /** 供 toggle 读取当前曲目的可用状态（避免把 track 塞进依赖里） */
+  const trackSrcRef = useRef(track.src);
+
+  useEffect(() => {
+    trackSrcRef.current = track.src;
+  }, [track.src]);
 
   // 创建 audio 元素并挂载事件
   useEffect(() => {
@@ -68,19 +78,27 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     };
   }, [tracks.length]);
 
-  // 切歌：更新 src
+  // 切歌：更新 src（没有文件时不设置 src，避免浏览器请求 404）
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.src = track.src;
     setProgress(0);
+
+    if (!available) {
+      audio.removeAttribute("src");
+      setDemo(true);
+      return;
+    }
+
+    setDemo(false);
+    audio.src = track.src;
     if (playing) {
       audio.play().catch(() => setDemo(true));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, track.src]);
+  }, [index, track.src, available]);
 
-  // 演示模式：没有音频文件时用计时器模拟播放进度
+  // 演示模式：没有音频文件（或加载失败）时用计时器模拟播放进度
   useEffect(() => {
     if (!playing || !demo) return;
     const timer = window.setInterval(() => {
@@ -99,7 +117,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     setPlaying((prev) => {
       const next = !prev;
       const audio = audioRef.current;
-      if (audio) {
+      if (audio && isAudioAvailable(trackSrcRef.current)) {
         if (next) audio.play().catch(() => setDemo(true));
         else audio.pause();
       }
@@ -122,8 +140,8 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo<MusicContextValue>(
-    () => ({ tracks, track, index, playing, progress, demo, select, toggle, next, prev, seek }),
-    [tracks, track, index, playing, progress, demo, select, toggle, next, prev, seek],
+    () => ({ tracks, track, index, playing, progress, demo, available, select, toggle, next, prev, seek }),
+    [tracks, track, index, playing, progress, demo, available, select, toggle, next, prev, seek],
   );
 
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;

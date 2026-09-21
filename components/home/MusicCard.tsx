@@ -7,7 +7,7 @@ import ProgressBar from "@/components/music/ProgressBar";
 import { cn } from "@/lib/utils";
 
 export default function MusicCard() {
-  const { tracks, track, index, playing, progress, demo, toggle, next, prev, select, seek } = useMusic();
+  const { tracks, track, index, playing, progress, demo, available, toggle, next, prev, select, seek } = useMusic();
 
   return (
     <section className="glass-card glass-sheen flex w-full flex-col gap-4 p-5">
@@ -93,7 +93,11 @@ export default function MusicCard() {
         ))}
       </ul>
 
-      {demo ? <p className="text-center text-[10px] text-gray-500 dark:text-gray-400">演示模式（未检测到音频文件）</p> : null}
+      {demo ? (
+        <p className="text-center text-[10px] text-gray-500 dark:text-gray-400">
+          {available ? "音频加载失败，请检查文件" : "演示模式（未上传音频文件）"}
+        </p>
+      ) : null}
     </section>
   );
 }

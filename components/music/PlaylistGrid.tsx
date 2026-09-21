@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Music2, Pause, Play } from "lucide-react";
 import { formatDuration, useMusic } from "@/components/providers/MusicProvider";
+import { isAudioAvailable } from "@/lib/music-files";
 import { cn } from "@/lib/utils";
 
 /** 音乐页歌单：点击任意一首即可播放（全站播放器同步） */
@@ -35,7 +36,14 @@ export default function PlaylistGrid() {
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-gray-800 dark:text-gray-100">{track.title}</p>
               <p className="truncate text-xs text-gray-500 dark:text-gray-400">{track.artist}</p>
-              <p className="mt-1 text-[11px] text-gray-400">{formatDuration(track.duration)}</p>
+              <p className="mt-1 flex items-center gap-2 text-[11px] text-gray-400">
+                {formatDuration(track.duration)}
+                {!isAudioAvailable(track.src) ? (
+                  <span className="rounded-full bg-white/50 px-1.5 py-0.5 text-[10px] text-gray-500 dark:bg-white/10 dark:text-gray-400">
+                    未上传
+                  </span>
+                ) : null}
+              </p>
             </div>
 
             <button

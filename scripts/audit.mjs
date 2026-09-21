@@ -105,7 +105,7 @@ if (audios.size > 0) {
 }
 
 /* ---------- 3. 敏感信息 ---------- */
-const secretPattern = /eyJhbGciOi[A-Za-z0-9_-]{20,}|SUPABASE_SERVICE_ROLE_KEY\s*=\s*ey[A-Za-z0-9._-]{20,}/;
+const secretPattern = /eyJhbGciOi[A-Za-z0-9_-]{20,}|(?:SECRET|TOKEN|API_KEY|SERVICE_ROLE_KEY)\s*[:=]\s*["']?[A-Za-z0-9._-]{24,}/;
 for (const file of files) {
   // .env.local / .env 本来就该放密钥，且已被 .gitignore 忽略，不参与扫描
   if (rel(file).endsWith("package-lock.json") || rel(file) === SELF || path.basename(file).startsWith(".env")) continue;

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 /** 底部固定的迷你播放器：全站可见，可展开歌单 */
 export default function MusicPlayer() {
-  const { tracks, track, index, playing, progress, demo, toggle, next, prev, select, seek } = useMusic();
+  const { tracks, track, index, playing, progress, demo, available, toggle, next, prev, select, seek } = useMusic();
   const [listOpen, setListOpen] = useState(false);
 
   return (
@@ -101,7 +101,9 @@ export default function MusicPlayer() {
         {demo ? (
           <p className="mt-1.5 flex items-center gap-1 text-[10px] text-gray-500 dark:text-gray-400">
             <Volume2 className="h-3 w-3" />
-            演示模式：把音频放到 public/music/ 下同名文件即可真实播放
+            {available
+              ? "音频加载失败：检查文件是否损坏、路径是否正确"
+              : "演示模式：把音频放到 public/music/ 下同名文件即可真实播放"}
           </p>
         ) : null}
       </div>
