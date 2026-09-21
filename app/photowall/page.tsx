@@ -3,7 +3,7 @@ import { Camera } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import PhotoGallery from "@/components/photos/PhotoGallery";
 import FadeIn from "@/components/ui/FadeIn";
-import { photoAlbums, photos } from "@/data/photos";
+import { photoAlbums, photos } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "照片墙",
