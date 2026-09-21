@@ -59,7 +59,7 @@ export const siteConfig = {
     /** 讨论分类名，例如 Announcements */
     category: "Announcements",
     /** 分类 ID，形如 DIC_kwDOxxxxxx（去 giscus.app 复制）。留空时页面会显示配置引导 */
-    categoryId: "",
+    categoryId: "DIC_kwDOT-Qaes4DGDmU",
     /** 评论与页面的对应关系：pathname | url | title | og:title | specific */
     mapping: "pathname",
     /** 是否显示表情回应 */
