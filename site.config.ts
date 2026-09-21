@@ -11,8 +11,8 @@ export const siteConfig = {
   /** 详细自我介绍（关于页顶部） */
   description:
     "你好，我是这个站点的博主。平时写写代码、拍拍照片、记一点乱七八糟的念头。这个站点是我的数字花园，欢迎随便逛逛。",
-  /** 站点域名 */
-  url: "https://example.com",
+  /** 站点域名（用于 RSS、分享卡片里的绝对地址） */
+  url: "https://athylin.cyou",
 
   /** 博主信息 */
   authorName: "AthyLin",
