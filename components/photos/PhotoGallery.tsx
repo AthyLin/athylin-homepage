@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "@/components/ui/AppImage";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import type { Photo } from "@/data/photos";
+import type { Photo } from "@/lib/content";
 import { cn, formatDate } from "@/lib/utils";
 
 /** 照片墙：相册筛选 + 瀑布流 + 灯箱（支持键盘左右切换与 Esc 关闭） */
