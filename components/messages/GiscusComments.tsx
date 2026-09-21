@@ -129,17 +129,8 @@ export default function GiscusComments() {
         留言
       </h2>
       <div ref={containerRef} className="giscus" />
-      <p className="mt-4 flex flex-wrap items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400">
-        首次使用需要在 GitHub 上安装一次 giscus App：
-        <a
-          href="https://github.com/apps/giscus"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-0.5 text-brand-500 hover:underline"
-        >
-          github.com/apps/giscus
-          <ExternalLink className="h-3 w-3" />
-        </a>
+      <p className="mt-4 text-[11px] leading-relaxed text-gray-500 dark:text-gray-400">
+        留言需要登录 GitHub 账号，评论会以 Discussion 的形式保存在本站仓库的 Discussions 里，随时可以删除。
       </p>
     </section>
   );
