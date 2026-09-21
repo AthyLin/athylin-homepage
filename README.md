@@ -24,7 +24,7 @@ npm install          # 安装依赖
 npm run dev          # 启动开发服务器 → http://localhost:3000
 npm run build        # 生产构建（会做 TypeScript 检查与静态生成）
 npm start            # 启动生产服务器
-npm run assets       # 重新生成占位素材（头像 / 照片 / 封面 SVG）
+npm run assets       # 重新生成占位素材（头像 / 照片 / 封面 SVG / favicon.ico / 音乐清单）
 npm run doctor       # 检查留言板 Supabase 配置（只读）
 npm run audit        # 检查资源引用、站内链接、敏感信息（只读）
 ```
@@ -187,6 +187,13 @@ npm run doctor      # 等价于 node scripts/check-supabase.mjs
 | `permission denied for function like_message`（42501） | 用 anon 密钥，或函数没建 | 换 service_role；重跑 SQL 脚本 |
 | `fetch failed` / `ETIMEDOUT` | URL 写错或网络不通 | 检查 `.env.local` 里的 URL，确认能访问 supabase.com |
 | 页面显示「存储：本地 JSON」 | `.env.local` 没生效，或打开了另一个 dev 实例的端口 | 改完环境变量必须重启 `npm run dev`；看终端里实际打印的 Local 地址 |
+
+### 控制台出现 404
+
+| 报错 | 原因 | 说明 |
+| --- | --- | --- |
+| `Failed to load resource: 404` 指向 `/favicon.ico` | 项目里只有 `favicon.svg`，浏览器仍可能去请求 `.ico` | 已提供 `public/favicon.ico`（`npm run assets` 生成）。若缺失，重新跑一次该命令 |
+| `Failed to load resource: 404` 指向 `/music/xxx.mp3` | 还没放音频文件 | 播放器只请求「清单里存在」的音频，所以正常情况下不会出现；清单由 `scripts/gen-music-manifest.mjs` 在 `npm run dev` / `npm run build` 前自动生成。放好 mp3 后重启即可 |
 
 ## 功能说明
 
