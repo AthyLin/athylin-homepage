@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Heart, MessageCircle, Quote } from "lucide-react";
-import type { Moment } from "@/data/moments";
+import type { Moment } from "@/lib/content";
 import { timeAgo } from "@/lib/utils";
 
 export default function MomentsCard({ moments }: { moments: Moment[] }) {

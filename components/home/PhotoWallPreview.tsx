@@ -1,7 +1,7 @@
 import Image from "@/components/ui/AppImage";
 import Link from "next/link";
 import { ArrowUpRight, Camera } from "lucide-react";
-import { photos } from "@/data/photos";
+import { photos } from "@/lib/content";
 
 /** 首页照片墙预览：拼贴式布局 */
 export default function PhotoWallPreview() {
