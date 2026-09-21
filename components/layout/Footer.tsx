@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Rss } from "lucide-react";
+import { Lock, Mail, Rss } from "lucide-react";
 import { BrandIcon } from "@/components/icons/Brand";
 import { siteConfig } from "@/site.config";
 
@@ -50,6 +50,14 @@ export default function Footer() {
           ) : null}
           <Link href="/feed.xml" aria-label="RSS" className="glass-button grid h-9 w-9 place-items-center">
             <Rss className="h-4 w-4" />
+          </Link>
+          {/* 发布后台入口（需要 GitHub Token 才能使用，放页脚只是为了自己好找） */}
+          <Link
+            href="/admin"
+            aria-label="发布后台"
+            className="glass-button grid h-9 w-9 place-items-center text-gray-500"
+          >
+            <Lock className="h-4 w-4" />
           </Link>
         </div>
       </div>
