@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import { Disc3, ListMusic, Pause, Play, SkipBack, SkipForward } from "lucide-react";
 import { formatDuration, useMusic } from "@/components/providers/MusicProvider";
 import ProgressBar from "@/components/music/ProgressBar";

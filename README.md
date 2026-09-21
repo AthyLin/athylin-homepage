@@ -195,3 +195,26 @@ npm start         # 自有服务器启动
    团队（team）下的项目域名通常形如 `项目名-团队名.vercel.app`。
    如果站点要求登录才能访问，去 Settings → Deployment Protection 关闭
    「Vercel Authentication」。
+
+### 部署到 GitHub Pages（不用服务器、不用密钥）
+
+仓库里已经带了一份工作流 `.github/workflows/deploy-pages.yml`，推送到 `main` 就会自动：
+装依赖 → 静态导出（`STATIC_EXPORT=1`）→ 发布到 GitHub Pages。
+
+启用方法（只需一次）：仓库 **Settings → Pages → Build and deployment → Source 选「GitHub Actions」**。
+
+之后访问：**https://用户名.github.io/仓库名/**
+
+几点说明：
+
+- 项目站点在子路径下（`/仓库名/`），所以工作流里设了 `NEXT_PUBLIC_BASE_PATH=/仓库名`；
+  如果你改用「用户名.github.io」这种用户站点（部署在根路径），把工作流里那一行删掉。
+- 静态导出时 `next.config.ts` 会自动打开 `output: "export"`、关闭图片优化、启用尾部斜杠。
+- 本地预览静态产物：
+
+  ```bash
+  STATIC_EXPORT=1 NEXT_PUBLIC_BASE_PATH=/仓库名 npm run build   # 产物在 out/
+  npx serve out                                                  # 或任意静态服务器
+  ```
+
+- GitHub Pages 不需要任何环境变量，留言板走 Giscus（浏览器直连 GitHub）。

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import Link from "next/link";
 import { Clock3, Eye, Heart } from "lucide-react";
 import type { PostMeta } from "@/lib/posts";

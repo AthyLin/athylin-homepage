@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import { Music2, Pause, Play } from "lucide-react";
 import { formatDuration, useMusic } from "@/components/providers/MusicProvider";
 import { isAudioAvailable } from "@/lib/music-files";

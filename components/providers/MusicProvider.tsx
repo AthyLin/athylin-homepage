@@ -11,6 +11,7 @@ import {
 } from "react";
 import { siteConfig } from "@/site.config";
 import { isAudioAvailable } from "@/lib/music-files";
+import { asset } from "@/lib/asset";
 
 export type Track = (typeof siteConfig.playlist)[number];
 
@@ -91,7 +92,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     }
 
     setDemo(false);
-    audio.src = track.src;
+    audio.src = asset(track.src);
     if (playing) {
       audio.play().catch(() => setDemo(true));
     }

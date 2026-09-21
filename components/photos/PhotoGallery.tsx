@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { Photo } from "@/data/photos";
 import { cn, formatDate } from "@/lib/utils";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import { ArrowUpRight, Users } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import FriendApply from "@/components/friends/FriendApply";

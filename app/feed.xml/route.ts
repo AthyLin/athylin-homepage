@@ -1,6 +1,9 @@
 import { getAllPosts } from "@/lib/posts";
 import { siteConfig } from "@/site.config";
 
+// 静态导出（GitHub Pages）要求路由显式声明为静态
+export const dynamic = "force-static";
+
 /** RSS 订阅：/feed.xml */
 export function GET() {
   const posts = getAllPosts();

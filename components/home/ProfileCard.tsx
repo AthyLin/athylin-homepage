@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import Link from "next/link";
 import { Camera, FileText, Mail, MapPin, MessageSquare, Tv } from "lucide-react";
 import { BrandIcon } from "@/components/icons/Brand";

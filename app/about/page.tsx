@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import { Coffee, Cpu, Mail, MapPin, Sparkles, User } from "lucide-react";
 import { BrandIcon } from "@/components/icons/Brand";
 import PageHeader from "@/components/layout/PageHeader";

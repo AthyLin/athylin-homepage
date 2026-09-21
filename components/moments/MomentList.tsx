@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "@/components/ui/AppImage";
 import { Heart, ImageIcon, MessageCircle } from "lucide-react";
 import type { Moment } from "@/data/moments";
 import { cn, formatDate, formatDateTime, timeAgo } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 /** 说说时间线：点赞状态保存在本地 */
 export default function MomentList({ moments }: { moments: Moment[] }) {
@@ -60,7 +61,7 @@ export default function MomentList({ moments }: { moments: Moment[] }) {
                   {moment.images.map((src) => (
                     <a
                       key={src}
-                      href={src}
+                      href={asset(src)}
                       target="_blank"
                       rel="noreferrer"
                       className="relative block aspect-[4/3] overflow-hidden rounded-xl"

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteConfig } from "@/site.config";
+import { asset } from "@/lib/asset";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { MusicProvider } from "@/components/providers/MusicProvider";
 import Background from "@/components/layout/Background";
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.title}`,
   },
   description: siteConfig.description,
-  icons: { icon: "/favicon.svg" },
-  alternates: { types: { "application/rss+xml": "/feed.xml" } },
+  icons: { icon: asset("/favicon.svg") },
+  alternates: { types: { "application/rss+xml": asset("/feed.xml") } },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.bio,
