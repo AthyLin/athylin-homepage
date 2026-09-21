@@ -54,7 +54,10 @@ export default function MomentList({ moments }: { moments: Moment[] }) {
                 </time>
               </header>
 
-              <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200">{moment.content}</p>
+              {/* whitespace-pre-line：让说说正文里的换行原样显示（长文小练笔分段用） */}
+              <p className="mt-3 text-sm leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-200">
+                {moment.content}
+              </p>
 
               {moment.images?.length ? (
                 <div className={cn("mt-3 grid gap-2", moment.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
