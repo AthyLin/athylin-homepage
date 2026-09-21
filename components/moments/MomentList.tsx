@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "@/components/ui/AppImage";
 import { Heart, ImageIcon, MessageCircle } from "lucide-react";
-import type { Moment } from "@/data/moments";
+import type { Moment } from "@/lib/content";
 import { cn, formatDate, formatDateTime, timeAgo } from "@/lib/utils";
 import { asset } from "@/lib/asset";
 
