@@ -3,7 +3,7 @@ import { MessageSquare } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import MomentList from "@/components/moments/MomentList";
 import FadeIn from "@/components/ui/FadeIn";
-import { moments } from "@/data/moments";
+import { moments } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "说说",
