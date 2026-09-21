@@ -47,7 +47,7 @@ export default function PhotoGallery({ photos, albums }: { photos: Photo[]; albu
             className={cn(
               "rounded-full px-3.5 py-1.5 text-xs transition-all",
               album === name
-                ? "bg-gradient-to-r from-brand-500 to-sky-400 text-white shadow-md"
+                ? "bg-brand-600 text-white shadow-md"
                 : "glass-pill text-gray-600 hover:text-brand-500 dark:text-gray-300",
             )}
           >

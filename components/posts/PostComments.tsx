@@ -70,7 +70,7 @@ export default function PostComments({ slug }: { slug: string }) {
           <button
             type="submit"
             data-no-effect
-            className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-sky-400 px-4 py-2 text-sm text-white shadow-md transition-transform hover:scale-[1.02]"
+            className="flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm text-white shadow-md transition-transform hover:scale-[1.02]"
           >
             <Send className="h-3.5 w-3.5" />
             发表评论
@@ -82,7 +82,7 @@ export default function PostComments({ slug }: { slug: string }) {
         {comments.map((comment) => (
           <li key={comment.id} className="rounded-xl bg-white/35 p-3 dark:bg-white/5">
             <div className="flex items-center gap-2 text-xs">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-brand-400 to-sky-400 text-[11px] text-white">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-500 text-[11px] text-white">
                 {comment.name.slice(0, 1)}
               </span>
               <span className="font-medium text-gray-700 dark:text-gray-200">{comment.name}</span>

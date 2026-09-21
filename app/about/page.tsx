@@ -93,7 +93,7 @@ export default function AboutPage() {
                     </div>
                     <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-white/40 dark:bg-white/10">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-brand-400 to-sky-400"
+                        className="h-full rounded-full bg-brand-500"
                         style={{ width: `${skill.level}%` }}
                       />
                     </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
           <ol className="mt-5 flex flex-col gap-5 border-l border-white/50 pl-5 dark:border-white/10">
             {timeline.map((item) => (
               <li key={item.year} className="relative">
-                <span className="absolute top-1.5 -left-[1.55rem] h-3 w-3 rounded-full border-2 border-white bg-gradient-to-br from-brand-400 to-sky-400 shadow dark:border-slate-800" />
+                <span className="absolute top-1.5 -left-[1.55rem] h-3 w-3 rounded-full border-2 border-white bg-brand-500 shadow dark:border-slate-800" />
                 <p className="text-xs font-semibold text-brand-600 dark:text-brand-200">{item.year}</p>
                 <p className="mt-0.5 text-sm font-medium text-gray-800 dark:text-gray-100">{item.title}</p>
                 <p className="mt-1 text-xs leading-relaxed text-gray-600 dark:text-gray-300">{item.description}</p>

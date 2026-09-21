@@ -51,16 +51,16 @@ export default function FriendApply() {
           <button
             type="submit"
             data-no-effect
-            className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-sky-400 px-4 py-2 text-sm text-white shadow-md transition-transform hover:scale-[1.02]"
+            className="flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm text-white shadow-md transition-transform hover:scale-[1.02]"
           >
             <Send className="h-3.5 w-3.5" />
             提交申请
           </button>
           <button type="button" onClick={copyTemplate} data-no-effect className="glass-button flex items-center gap-2 px-4 py-2 text-sm">
-            {status === "copied" ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <ClipboardCopy className="h-3.5 w-3.5" />}
+            {status === "copied" ? <Check className="h-3.5 w-3.5 text-brand-500" /> : <ClipboardCopy className="h-3.5 w-3.5" />}
             {status === "copied" ? "已复制" : "复制本站信息"}
           </button>
-          {status === "sent" ? <span className="text-xs text-emerald-600 dark:text-emerald-300">已收到，我会尽快回复～</span> : null}
+          {status === "sent" ? <span className="text-xs text-brand-600 dark:text-brand-300">已收到，我会尽快回复～</span> : null}
         </div>
       </form>
     </section>

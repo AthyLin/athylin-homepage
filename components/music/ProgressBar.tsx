@@ -41,7 +41,7 @@ export default function ProgressBar({ value, max, onSeek, className }: ProgressB
       className={cn("group relative h-1.5 w-full cursor-pointer rounded-full bg-white/40 dark:bg-white/15", className)}
     >
       <div
-        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-brand-400 to-sky-400"
+        className="absolute inset-y-0 left-0 rounded-full bg-brand-500"
         style={{ width: `${percent}%` }}
       />
       <span

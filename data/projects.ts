@@ -20,7 +20,7 @@ export const projects: Project[] = [
     repo: "https://github.com",
     stars: 128,
     status: "维护中",
-    color: "#8b5cf6",
+    color: "#4f46e5",
   },
   {
     id: "pr2",
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     repo: "https://github.com",
     stars: 96,
     status: "维护中",
-    color: "#0ea5e9",
+    color: "#6366f1",
   },
   {
     id: "pr3",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     repo: "https://github.com",
     stars: 74,
     status: "已完成",
-    color: "#10b981",
+    color: "#818cf8",
   },
   {
     id: "pr4",
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     repo: "https://github.com",
     stars: 52,
     status: "开发中",
-    color: "#f59e0b",
+    color: "#a5b4fc",
   },
   {
     id: "pr5",
@@ -64,6 +64,6 @@ export const projects: Project[] = [
     repo: "https://github.com",
     stars: 41,
     status: "维护中",
-    color: "#ec4899",
+    color: "#c7d2fe",
   },
 ];

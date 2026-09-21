@@ -40,7 +40,7 @@ export default function MomentList({ moments }: { moments: Moment[] }) {
         return (
           <li key={moment.id} className="relative">
             <span className="absolute top-6 -left-[1.42rem] grid h-3 w-3 place-items-center sm:-left-[2.02rem]">
-              <span className="h-3 w-3 rounded-full border-2 border-white bg-gradient-to-br from-brand-400 to-sky-400 shadow dark:border-slate-800" />
+              <span className="h-3 w-3 rounded-full border-2 border-white bg-brand-500 shadow dark:border-slate-800" />
             </span>
 
             <article className="glass-card glass-card-hover glass-sheen p-4 sm:p-5">
@@ -89,7 +89,7 @@ export default function MomentList({ moments }: { moments: Moment[] }) {
                   className={cn(
                     "flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-all",
                     isLiked
-                      ? "bg-pink-400/25 text-pink-600 dark:text-pink-200"
+                      ? "bg-brand-500/15 text-brand-600 dark:text-brand-200"
                       : "hover:bg-white/50 dark:hover:bg-white/10",
                   )}
                 >

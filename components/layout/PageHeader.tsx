@@ -16,7 +16,7 @@ export default function PageHeader({ title, description, icon: Icon, extra, brea
     <header className="glass-card glass-sheen mb-4 flex flex-col gap-3 p-5 sm:mb-5 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-4">
         {Icon ? (
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-400 to-sky-400 text-white shadow-md">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-500 text-white shadow-md">
             <Icon className="h-5 w-5" />
           </span>
         ) : null}

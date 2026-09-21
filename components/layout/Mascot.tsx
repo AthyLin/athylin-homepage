@@ -87,8 +87,8 @@ export default function Mascot() {
               <stop offset="100%" stopColor="#c7d2fe" stopOpacity="0.85" />
             </linearGradient>
             <linearGradient id="mascot-glow" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#a18cd1" />
-              <stop offset="100%" stopColor="#a1c4fd" />
+              <stop offset="0%" stopColor="#a5b4fc" />
+              <stop offset="100%" stopColor="#e0e7ff" />
             </linearGradient>
           </defs>
           <ellipse cx="60" cy="132" rx="26" ry="5" fill="rgba(31,38,135,0.18)" />
@@ -103,7 +103,7 @@ export default function Mascot() {
           <circle cx="34" cy="78" r="6" fill="rgba(251,194,235,0.65)" />
           <circle cx="86" cy="78" r="6" fill="rgba(251,194,235,0.65)" />
           <path d="M60 40 q6 -10 14 -12" stroke="rgba(161,140,209,0.8)" strokeWidth="3" fill="none" strokeLinecap="round" />
-          <circle cx="78" cy="26" r="4" fill="#a1c4fd" />
+          <circle cx="78" cy="26" r="4" fill="#818cf8" />
           <g className="group-hover:animate-pulse-ring">
             <circle cx="60" cy="70" r="42" fill="none" stroke="rgba(161,140,209,0.35)" strokeWidth="1.5" />
           </g>

@@ -24,7 +24,7 @@ function ScrollProgress() {
   return (
     <div className="fixed inset-x-0 top-0 z-[60] h-0.5 bg-transparent">
       <div
-        className="h-full bg-gradient-to-r from-brand-400 via-pink-400 to-sky-400 transition-[width] duration-150"
+        className="h-full bg-brand-500 transition-[width] duration-150"
         style={{ width: `${progress * 100}%` }}
       />
     </div>
@@ -181,8 +181,8 @@ function BackToTop() {
         />
         <defs>
           <linearGradient id="totop" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#8b5cf6" />
-            <stop offset="100%" stopColor="#38bdf8" />
+            <stop offset="0%" stopColor="#4f46e5" />
+            <stop offset="100%" stopColor="#818cf8" />
           </linearGradient>
         </defs>
       </svg>

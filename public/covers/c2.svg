@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img">
   <defs>
   <linearGradient id="sky" x1="0" y1="0" x2="0.4" y2="1">
-    <stop offset="0%" stop-color="#fbc2eb" />
-    <stop offset="55%" stop-color="#a18cd1" />
-    <stop offset="100%" stop-color="#c3a6f5" />
+    <stop offset="0%" stop-color="#eef2ff" />
+    <stop offset="55%" stop-color="#dbe3ff" />
+    <stop offset="100%" stop-color="#b9c4fb" />
   </linearGradient>
   <linearGradient id="night" x1="0" y1="0" x2="0.6" y2="1">
     <stop offset="0%" stop-color="#1b1a45" />
@@ -15,12 +15,12 @@
     <stop offset="100%" stop-color="#15132e" />
   </linearGradient>
   <linearGradient id="warm" x1="0" y1="0" x2="0.5" y2="1">
-    <stop offset="0%" stop-color="#fbc2eb" />
-    <stop offset="100%" stop-color="#c3a6f5" />
+    <stop offset="0%" stop-color="#eef2ff" />
+    <stop offset="100%" stop-color="#b9c4fb" />
   </linearGradient>
   <linearGradient id="mist" x1="0" y1="0" x2="0.3" y2="1">
-    <stop offset="0%" stop-color="#a18cd1" />
-    <stop offset="100%" stop-color="#c3a6f5" />
+    <stop offset="0%" stop-color="#dbe3ff" />
+    <stop offset="100%" stop-color="#b9c4fb" />
   </linearGradient>
   <radialGradient id="glow" cx="50%" cy="50%">
     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />

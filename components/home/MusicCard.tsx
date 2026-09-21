@@ -61,7 +61,7 @@ export default function MusicCard() {
           onClick={toggle}
           aria-label={playing ? "暂停" : "播放"}
           data-no-effect
-          className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-sky-400 text-white shadow-lg transition-transform hover:scale-105"
+          className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-600 text-white shadow-lg transition-transform hover:scale-105"
         >
           {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
         </button>

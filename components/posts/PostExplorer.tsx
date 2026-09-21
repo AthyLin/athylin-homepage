@@ -67,7 +67,7 @@ export default function PostExplorer({ posts, categories, tags }: PostExplorerPr
               className={cn(
                 "rounded-full px-3 py-1.5 text-xs transition-all",
                 category === name
-                  ? "bg-gradient-to-r from-brand-500 to-sky-400 text-white shadow-md"
+                  ? "bg-brand-600 text-white shadow-md"
                   : "glass-pill text-gray-600 hover:text-brand-500 dark:text-gray-300",
               )}
             >

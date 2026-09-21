@@ -54,7 +54,7 @@ export default function PlaylistGrid() {
               className={cn(
                 "grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-all",
                 isCurrent
-                  ? "bg-gradient-to-br from-brand-500 to-sky-400 text-white shadow-lg"
+                  ? "bg-brand-600 text-white shadow-lg"
                   : "glass-button text-gray-700 dark:text-gray-200",
               )}
             >

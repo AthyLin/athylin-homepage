@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="mx-auto flex w-full max-w-xl flex-col items-center px-4 sm:px-8">
       <div className="glass-card glass-sheen flex w-full flex-col items-center gap-4 p-10 text-center">
-        <span className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-400 to-sky-400 text-white shadow-lg">
+        <span className="grid h-16 w-16 place-items-center rounded-2xl bg-brand-500 text-white shadow-lg">
           <Compass className="h-7 w-7" />
         </span>
         <h1 className="gradient-text text-4xl font-bold">404</h1>

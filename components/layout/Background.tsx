@@ -20,7 +20,7 @@ function makeStars(count: number) {
   return stars;
 }
 
-const STARS = makeStars(90);
+const STARS = makeStars(60);
 
 /**
  * 全站背景：流动渐变 + 漂浮光斑 + 星点。
@@ -31,28 +31,22 @@ export default function Background() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* 底色渐变 */}
+      {/* 底色：极淡的同色系渐变 */}
       <div
-        className="absolute inset-0 opacity-90"
+        className="absolute inset-0 opacity-70"
         style={{
-          background: `linear-gradient(120deg, ${c1}55 0%, ${c2}66 35%, ${c3}55 65%, ${c4}66 100%)`,
-          backgroundSize: "300% 300%",
-          animation: siteConfig.useGradient ? "gradient-flow 28s ease infinite" : undefined,
+          background: `linear-gradient(180deg, ${c4}66 0%, ${c2}3d 45%, ${c1}2e 100%)`,
         }}
       />
 
-      {/* 漂浮光斑 */}
+      {/* 两枚同色光斑（不再用多色块） */}
       <div
-        className="animate-blob absolute -top-40 -left-32 h-[34rem] w-[34rem] rounded-full opacity-60 blur-3xl"
-        style={{ background: `radial-gradient(circle at 30% 30%, ${c1}, transparent 70%)` }}
+        className="animate-blob absolute -top-48 left-1/4 h-[36rem] w-[36rem] rounded-full opacity-40 blur-3xl dark:opacity-25"
+        style={{ background: `radial-gradient(circle at 40% 40%, ${c3}, transparent 70%)` }}
       />
       <div
-        className="animate-blob absolute top-1/4 -right-40 h-[30rem] w-[30rem] rounded-full opacity-55 blur-3xl"
-        style={{ background: `radial-gradient(circle at 60% 40%, ${c3}, transparent 70%)`, animationDelay: "-6s" }}
-      />
-      <div
-        className="animate-blob absolute bottom-[-12rem] left-1/3 h-[28rem] w-[28rem] rounded-full opacity-50 blur-3xl"
-        style={{ background: `radial-gradient(circle at 50% 50%, ${c2}, transparent 70%)`, animationDelay: "-12s" }}
+        className="animate-blob absolute top-1/3 -right-48 h-[30rem] w-[30rem] rounded-full opacity-35 blur-3xl dark:opacity-20"
+        style={{ background: `radial-gradient(circle at 60% 40%, ${c1}, transparent 70%)`, animationDelay: "-8s" }}
       />
 
       {/* 星点（暗色模式下更明显） */}
@@ -73,7 +67,7 @@ export default function Background() {
       </div>
 
       {/* 顶部提亮，让玻璃卡片的高光更自然 */}
-      <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-white/60 to-transparent dark:from-white/10" />
+      <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-white/50 to-transparent dark:from-white/[0.04]" />
     </div>
   );
 }

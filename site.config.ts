@@ -25,8 +25,8 @@ export const siteConfig = {
   /** 职业标签 */
   jobTitle: "前端开发 / 摄影爱好者",
 
-  /** 主题色：用于渐变背景与高亮 */
-  themeColors: ["#a18cd1", "#fbc2eb", "#a1c4fd", "#c2e9fb"],
+  /** 主题色：同一色系（靛蓝）的四个深浅，用于背景光斑与高亮 */
+  themeColors: ["#c7d2fe", "#e0e7ff", "#a5b4fc", "#eef2ff"],
   /** 是否使用渐变动效背景（false 则使用 themeColors 的静态渐变） */
   useGradient: true,
 
@@ -77,12 +77,16 @@ export const siteConfig = {
   postSectionTitle: "最近在写",
   momentSectionTitle: "碎碎念",
 
-  /** 音乐播放器歌单（把音频放到 public/music/ 下即可真实播放，缺文件时为演示模式） */
+  /**
+   * 音乐播放器歌单。
+   * 音频文件放在 public/music/ 下，src 写 "/music/文件名"；duration 是秒数。
+   * 想换歌：把 mp3 放进 public/music/，再改这里的 title / artist / src / duration。
+   */
   playlist: [
-    { id: "m1", title: "夏夜的风", artist: "Demo Artist", cover: "/covers/c1.svg", src: "/music/summer-wind.mp3", duration: 254 },
-    { id: "m2", title: "玻璃与星星", artist: "Demo Artist", cover: "/covers/c2.svg", src: "/music/glass-stars.mp3", duration: 218 },
-    { id: "m3", title: "云端散步", artist: "Demo Artist", cover: "/covers/c3.svg", src: "/music/cloud-walk.mp3", duration: 197 },
-    { id: "m4", title: "旧胶片", artist: "Demo Artist", cover: "/covers/c4.svg", src: "/music/old-film.mp3", duration: 231 },
+    { id: "m1", title: "反方向的钟", artist: "周杰伦", cover: "/covers/c1.svg", src: "/music/reverse-clock.mp3", duration: 258 },
+    { id: "m2", title: "手写的从前", artist: "周杰伦", cover: "/covers/c2.svg", src: "/music/handwritten-past.mp3", duration: 298 },
+    { id: "m3", title: "烟花易冷", artist: "周杰伦", cover: "/covers/c3.svg", src: "/music/fireworks-cold.mp3", duration: 263 },
+    { id: "m4", title: "Letter", artist: "未知", cover: "/covers/c4.svg", src: "/music/letter.mp3", duration: 219 },
   ],
 };
 

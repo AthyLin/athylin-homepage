@@ -46,7 +46,7 @@ function fireConfetti() {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  const colors = ["#a18cd1", "#fbc2eb", "#a1c4fd", "#c2e9fb", "#f6d365", "#8b5cf6", "#f472b6"];
+  const colors = ["#4f46e5", "#6366f1", "#818cf8", "#a5b4fc", "#c7d2fe", "#e0e7ff", "#312e81"];
   const particles = Array.from({ length: 140 }, () => ({
     x: Math.random() * canvas.width,
     y: -20 - Math.random() * 160,
@@ -136,7 +136,7 @@ export default function Navbar() {
           className="group flex shrink-0 items-center gap-2 pr-1 pl-1 sm:pr-3"
           title="点我 7 次有惊喜"
         >
-          <span className="relative grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-brand-400 to-sky-400 text-white shadow-md">
+          <span className="relative grid h-8 w-8 place-items-center rounded-xl bg-brand-500 text-white shadow-md">
             <Sparkles className="h-4 w-4" />
             <span className="absolute inset-0 rounded-xl border border-white/60" />
           </span>

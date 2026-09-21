@@ -8,16 +8,17 @@
     system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
-  --color-brand-50: #f2f1ff;
-  --color-brand-100: #e6e3ff;
-  --color-brand-200: #cfc9ff;
-  --color-brand-300: #b0a5ff;
-  --color-brand-400: #9a86fb;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
-  --color-brand-800: #5b21b6;
-  --color-brand-900: #4c1d95;
+  /* 全站只有一个主色（靛蓝），其余全部是中性灰 —— 保证“色块单一” */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
@@ -36,19 +37,17 @@
 
   body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #eef1ff 0%, #fbeffb 30%, #eaf6ff 60%, #f3edff 100%);
-    background-size: 400% 400%;
-    animation: gradient-flow 24s ease infinite;
+    background: linear-gradient(180deg, #f8f9fc 0%, #eef0f7 55%, #f3f4f9 100%);
+    background-attachment: fixed;
     color: #1f2937;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   .dark body {
-    background: linear-gradient(135deg, #0b1026 0%, #1a1145 25%, #0d1b3e 50%, #1e1145 75%, #0b1026 100%);
-    background-size: 400% 400%;
-    animation: gradient-flow 24s ease infinite;
-    color: #e5e7eb;
+    background: linear-gradient(180deg, #0b0d12 0%, #12141c 55%, #0e1016 100%);
+    background-attachment: fixed;
+    color: #e6e8ee;
   }
 
   /* 页面文字默认不可选中（输入框、代码与正文除外），避免拖拽时到处都是蓝框 */
@@ -68,7 +67,7 @@
   }
 
   ::selection {
-    background: rgba(139, 92, 246, 0.25);
+    background: rgba(99, 102, 241, 0.22);
   }
 
   /* 滚动条 */
@@ -82,12 +81,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(139, 92, 246, 0.32);
+    background: rgba(99, 102, 241, 0.3);
     border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(139, 92, 246, 0.7);
+    background: rgba(99, 102, 241, 0.65);
   }
 
   /* Firefox 滚动条 */
@@ -107,29 +106,29 @@
   .glass-card {
   position: relative;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 24px rgba(24, 30, 66, 0.07);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   backdrop-filter: blur(16px) saturate(160%);
   transition: box-shadow 0.35s ease, transform 0.35s ease, background 0.35s ease;
 }
 
   .glass-card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(31, 38, 135, 0.2);
-  background: rgba(255, 255, 255, 0.58);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(24, 30, 66, 0.12);
+  background: rgba(255, 255, 255, 0.75);
 }
 
   .dark .glass-card {
-  background: rgba(30, 41, 59, 0.45);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  background: rgba(24, 27, 36, 0.62);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
 }
 
   .dark .glass-card-hover:hover {
-  background: rgba(30, 41, 59, 0.6);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  background: rgba(30, 34, 45, 0.75);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
   /* 卡片顶部高光，让玻璃更有厚度 */
@@ -138,43 +137,43 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0) 40%);
   pointer-events: none;
 }
 
   .dark .glass-sheen::after {
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 45%);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 42%);
 }
 
   .glass-button {
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all 0.28s ease;
 }
 
   .glass-button:hover {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(31, 38, 135, 0.18);
+  box-shadow: 0 4px 14px rgba(24, 30, 66, 0.1);
 }
 
   .dark .glass-button {
-  background: rgba(51, 65, 85, 0.5);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(38, 42, 54, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
   .dark .glass-button:hover {
-  background: rgba(71, 85, 105, 0.65);
+  background: rgba(48, 53, 68, 0.75);
 }
 
   .glass-input {
   width: 100%;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   padding: 0.7rem 1rem;
   outline: none;
   transition: all 0.25s ease;
@@ -185,14 +184,14 @@
 }
 
   .glass-input:focus {
-  border-color: rgba(139, 92, 246, 0.55);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
   .dark .glass-input {
-  background: rgba(51, 65, 85, 0.45);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #e5e7eb;
+  background: rgba(38, 42, 54, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #e6e8ee;
 }
 
   .dark .glass-input::placeholder {
@@ -201,26 +200,27 @@
 
   .glass-pill {
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
   .dark .glass-pill {
-  background: rgba(51, 65, 85, 0.45);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(38, 42, 54, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
   .gradient-text {
-  background: linear-gradient(120deg, #7c3aed, #db2777 45%, #0ea5e9);
+  /* 同名保留，但改成同色系（靛蓝深浅）的细腻渐变 */
+  background: linear-gradient(120deg, #4f46e5, #6366f1 60%, #818cf8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
   .dark .gradient-text {
-  background: linear-gradient(120deg, #c4b5fd, #f9a8d4 45%, #7dd3fc);
+  background: linear-gradient(120deg, #c7d2fe, #a5b4fc 60%, #818cf8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

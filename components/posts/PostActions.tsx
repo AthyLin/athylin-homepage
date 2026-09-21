@@ -46,7 +46,7 @@ export default function PostActions({ slug }: { slug: string }) {
         data-no-effect
         className={cn(
           "glass-button flex items-center gap-2 px-4 py-2 text-sm transition-all",
-          liked && "bg-pink-400/25 text-pink-600 dark:text-pink-200",
+          liked && "bg-brand-500/15 text-brand-600 dark:text-brand-200",
         )}
       >
         <Heart className={cn("h-4 w-4", liked && "fill-current")} />
@@ -55,7 +55,7 @@ export default function PostActions({ slug }: { slug: string }) {
       </button>
 
       <button type="button" onClick={share} data-no-effect className="glass-button flex items-center gap-2 px-4 py-2 text-sm">
-        {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Share2 className="h-4 w-4" />}
+        {copied ? <Check className="h-4 w-4 text-brand-500" /> : <Share2 className="h-4 w-4" />}
         {copied ? "链接已复制" : "分享"}
       </button>
     </div>

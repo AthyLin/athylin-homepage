@@ -15,7 +15,7 @@ export const friends: Friend[] = [
     url: "https://example.com",
     avatar: "/avatars/f1.svg",
     description: "把每个夜晚都做成一颗星星。",
-    color: "#8b5cf6",
+    color: "#4f46e5",
   },
   {
     id: "f2",
@@ -23,7 +23,7 @@ export const friends: Friend[] = [
     url: "https://example.com",
     avatar: "/avatars/f2.svg",
     description: "一个前端工程师的技术与生活记录。",
-    color: "#0ea5e9",
+    color: "#6366f1",
   },
   {
     id: "f3",
@@ -31,7 +31,7 @@ export const friends: Friend[] = [
     url: "https://example.com",
     avatar: "/avatars/f3.svg",
     description: "写代码，也写食谱。",
-    color: "#f59e0b",
+    color: "#818cf8",
   },
   {
     id: "f4",
@@ -39,7 +39,7 @@ export const friends: Friend[] = [
     url: "https://example.com",
     avatar: "/avatars/f4.svg",
     description: "摄影 / 旅行 / 一些没用的浪漫。",
-    color: "#ec4899",
+    color: "#a5b4fc",
   },
   {
     id: "f5",
@@ -47,7 +47,7 @@ export const friends: Friend[] = [
     url: "https://example.com",
     avatar: "/avatars/f5.svg",
     description: "在这里种一些会发光的像素。",
-    color: "#10b981",
+    color: "#6366f1",
   },
   {
     id: "f6",
@@ -63,7 +63,7 @@ export const friends: Friend[] = [
     url: "https://example.com",
     avatar: "/avatars/f7.svg",
     description: "用代码写诗的奇怪组织。",
-    color: "#f43f5e",
+    color: "#4f46e5",
   },
   {
     id: "f8",

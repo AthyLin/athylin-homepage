@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 };
 
 const STATUS_STYLE: Record<string, string> = {
-  维护中: "bg-emerald-400/20 text-emerald-700 dark:text-emerald-200",
-  已完成: "bg-sky-400/20 text-sky-700 dark:text-sky-200",
-  开发中: "bg-amber-400/20 text-amber-700 dark:text-amber-200",
+  维护中: "bg-brand-500/15 text-brand-700 dark:text-brand-200",
+  已完成: "bg-brand-500/15 text-brand-700 dark:text-brand-200",
+  开发中: "bg-brand-400/20 text-brand-700 dark:text-brand-200",
 };
 
 export default function ProjectsPage() {
@@ -30,10 +30,7 @@ export default function ProjectsPage() {
             <article className="glass-card glass-card-hover glass-sheen flex h-full flex-col gap-3 p-5">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span
-                    className="grid h-10 w-10 place-items-center rounded-xl text-sm font-bold text-white shadow-md"
-                    style={{ background: `linear-gradient(135deg, ${project.color}, #ffffff55)` }}
-                  >
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-500 text-sm font-bold text-white shadow-sm">
                     {project.name.slice(0, 1)}
                   </span>
                   <h2 className="text-base font-semibold text-gray-800 dark:text-gray-50">{project.name}</h2>

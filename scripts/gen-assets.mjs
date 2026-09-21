@@ -24,19 +24,23 @@ function makeRandom(seed) {
   };
 }
 
+/**
+ * 统一配色：全部落在靛蓝 / 紫灰这一色系里（深浅不同），
+ * 这样封面、照片墙、头像看起来是一个整体，而不是一堆杂色块。
+ */
 const PALETTES = [
-  ["#f6d365", "#fda085", "#f7b267"],
-  ["#a1c4fd", "#c2e9fb", "#8ec5fc"],
-  ["#fbc2eb", "#a6c1ee", "#f8b8dc"],
-  ["#c2e9fb", "#a1c4fd", "#dbeafe"],
-  ["#fdcbf1", "#e6dee9", "#c7d2fe"],
-  ["#84fab0", "#8fd3f4", "#a6e3e9"],
-  ["#fbc2eb", "#a18cd1", "#c3a6f5"],
-  ["#fddb92", "#d1fdff", "#ffd6a5"],
-  ["#e0c3fc", "#8ec5fc", "#b8c0ff"],
-  ["#f093fb", "#f5576c", "#ff9a9e"],
-  ["#4facfe", "#00f2fe", "#5ee7df"],
-  ["#d4fc79", "#96e6a1", "#c9f0a3"],
+  ["#eef2ff", "#c7d2fe", "#a5b4fc"],
+  ["#e0e7ff", "#a5b4fc", "#818cf8"],
+  ["#f4f5fa", "#d5d9e8", "#b6bcd8"],
+  ["#eef1f8", "#ccd3e6", "#aab3cf"],
+  ["#f5f3ff", "#ddd6fe", "#c4b5fd"],
+  ["#e9ecf5", "#c9d0e2", "#a7b0c9"],
+  ["#eef2ff", "#dbe3ff", "#b9c4fb"],
+  ["#f2f4f9", "#d0d7e6", "#aeb7cc"],
+  ["#eaeaf6", "#c8c8ea", "#a6a6d8"],
+  ["#f0f2f8", "#cfd6ea", "#adb6d2"],
+  ["#e8ecfa", "#c2cdf2", "#9fadde"],
+  ["#f3f4f8", "#d3d7e3", "#b2b8c9"],
 ];
 
 const stroke = (extra = "") => `stroke="rgba(255,255,255,${0.18})" ${extra}`;
