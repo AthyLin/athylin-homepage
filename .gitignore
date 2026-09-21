@@ -1,0 +1,24 @@
+# 依赖
+node_modules/
+
+# 构建产物
+.next/
+out/
+build/
+
+# 运行时数据（留言板写入的 JSON）
+.data/
+
+# 环境变量
+.env
+.env*.local
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# TypeScript 增量缓存
+*.tsbuildinfo
