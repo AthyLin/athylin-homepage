@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-8">
       <FadeIn>
-        <PageHeader title="关于" description="关于这个站点，以及它背后的那个人。" icon={User} />
+        <PageHeader title="关于" description="关于这个站点OvO" icon={User} />
       </FadeIn>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">

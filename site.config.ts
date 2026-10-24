@@ -23,7 +23,7 @@ export const siteConfig = {
   /** 所在地 */
   location: "中国 · 郑州",
   /** 职业标签 */
-  jobTitle: "前端开发 / 摄影爱好者",
+  jobTitle: "摄影爱好者",
 
   /** 主题色：同一色系（靛蓝）的四个深浅，用于背景光斑与高亮 */
   themeColors: ["#c7d2fe", "#e0e7ff", "#a5b4fc", "#eef2ff"],
@@ -83,13 +83,10 @@ export const siteConfig = {
    * 想换歌：把 mp3 放进 public/music/，再改这里的 title / artist / src / duration。
    */
   playlist: [
-    { id: "m1", title: "反方向的钟", artist: "周杰伦", cover: "/covers/c1.svg", src: "/music/reverse-clock.mp3", duration: 258 },
-    { id: "m2", title: "手写的从前", artist: "周杰伦", cover: "/covers/c2.svg", src: "/music/handwritten-past.mp3", duration: 298 },
-    { id: "m3", title: "烟花易冷", artist: "周杰伦", cover: "/covers/c3.svg", src: "/music/fireworks-cold.mp3", duration: 263 },
-    { id: "m4", title: "Letter", artist: "屈家伟", cover: "/covers/c4.svg", src: "/music/letter.mp3", duration: 219 },
-    { id: "m5", title: "去年夏天", artist: "王大毛", cover: "/covers/c5.svg", src: "/music/去年夏天.mp3", duration: 245 },
-    { id: "m6", title: "周杰伦串烧", artist: "周杰伦", cover: "/covers/c6.svg", src: "/music/周杰伦.mp3", duration: 2318 },
-    { id: "m7", title: "串烧", artist: "屈家伟", cover: "/covers/c7.svg", src: "/music/串烧.mp3", duration: 2065 },
+    { id: "m1", title: "烟花易冷", artist: "周杰伦", cover: "/covers/c3.svg", src: "/music/fireworks-cold.mp3", duration: 263 },
+    { id: "m2", title: "去年夏天", artist: "王大毛", cover: "/covers/c5.svg", src: "/music/去年夏天.mp3", duration: 245 },
+    { id: "m3", title: "周杰伦串烧", artist: "周杰伦", cover: "/covers/c6.svg", src: "/music/周杰伦.mp3", duration: 2318 },
+    { id: "m4", title: "串烧", artist: "屈家伟", cover: "/covers/c7.svg", src: "/music/串烧.mp3", duration: 2065 },
   ],
 };
 

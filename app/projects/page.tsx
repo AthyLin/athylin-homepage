@@ -21,7 +21,7 @@ export default function ProjectsPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-8">
       <FadeIn>
-        <PageHeader title="项目" description={`${projects.length} 个在做或做过的小东西。`} icon={FolderGit2} />
+        <PageHeader title="项目" description={`${projects.length} 用Codex做的小东西。`} icon={FolderGit2} />
       </FadeIn>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

@@ -16,7 +16,7 @@ export default function MomentsPage() {
       <FadeIn>
         <PageHeader
           title="说说"
-          description={`${moments.length} 条碎碎念，记录生活、技术与随想。`}
+          description={`${moments.length} 条碎碎念，记录生活和个人想法。`}
           icon={MessageSquare}
         />
       </FadeIn>

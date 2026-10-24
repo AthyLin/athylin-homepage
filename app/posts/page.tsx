@@ -7,7 +7,7 @@ import { getAllPosts, getCategories, getTags } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "文章",
-  description: "技术笔记、生活记录与一些没用的浪漫。",
+  description: "生活记录与一些没用的浪漫。",
 };
 
 export default function PostsPage() {
@@ -20,7 +20,7 @@ export default function PostsPage() {
       <FadeIn>
         <PageHeader
           title="文章"
-          description="技术笔记、生活记录，以及一些没用的浪漫。"
+          description="生活记录，以及一些没用的浪漫。"
           icon={BookOpen}
           breadcrumb="文章"
         />

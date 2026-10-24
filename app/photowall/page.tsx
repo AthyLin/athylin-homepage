@@ -14,7 +14,7 @@ export default function PhotoWallPage() {
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-8">
       <FadeIn>
-        <PageHeader title="照片墙" description="拍得不算好，但都是真的光。点击照片可以放大查看。" icon={Camera} />
+        <PageHeader title="照片墙" description="拍得不算好，点击照片可以放大查看。" icon={Camera} />
       </FadeIn>
       <FadeIn delay={0.06}>
         <PhotoGallery photos={photos} albums={photoAlbums} />
