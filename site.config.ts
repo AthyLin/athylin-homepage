@@ -10,7 +10,7 @@ export const siteConfig = {
   bio: "且将新火试旧茶，诗酒趁年华。",
   /** 详细自我介绍（关于页顶部） */
   description:
-    "你好，我是这个站点的博主。平时写写代码、拍拍照片、记一点乱七八糟的念头。这个站点是我的数字花园，欢迎随便逛逛。",
+    "你好，我是这个站点的博主。平时喜欢拍拍照片、记一点乱七八糟的念头。这个站点是我的数字花园，欢迎随便逛逛。",
   /** 站点域名（用于 RSS、分享卡片里的绝对地址） */
   url: "https://athylin.cyou",
 
@@ -21,7 +21,7 @@ export const siteConfig = {
   /** 点击头像跳转的链接，留空则不跳转 */
   websiteUrl: "",
   /** 所在地 */
-  location: "中国 · 杭州",
+  location: "中国 · 郑州",
   /** 职业标签 */
   jobTitle: "前端开发 / 摄影爱好者",
 
@@ -86,7 +86,10 @@ export const siteConfig = {
     { id: "m1", title: "反方向的钟", artist: "周杰伦", cover: "/covers/c1.svg", src: "/music/reverse-clock.mp3", duration: 258 },
     { id: "m2", title: "手写的从前", artist: "周杰伦", cover: "/covers/c2.svg", src: "/music/handwritten-past.mp3", duration: 298 },
     { id: "m3", title: "烟花易冷", artist: "周杰伦", cover: "/covers/c3.svg", src: "/music/fireworks-cold.mp3", duration: 263 },
-    { id: "m4", title: "Letter", artist: "未知", cover: "/covers/c4.svg", src: "/music/letter.mp3", duration: 219 },
+    { id: "m4", title: "Letter", artist: "屈家伟", cover: "/covers/c4.svg", src: "/music/letter.mp3", duration: 219 },
+    { id: "m5", title: "去年夏天", artist: "王大毛", cover: "/covers/c5.svg", src: "/music/去年夏天.mp3", duration: 245 },
+    { id: "m6", title: "周杰伦串烧", artist: "周杰伦", cover: "/covers/c6.svg", src: "/music/周杰伦.mp3", duration: 2318 },
+    { id: "m7", title: "串烧", artist: "屈家伟", cover: "/covers/c7.svg", src: "/music/串烧.mp3", duration: 2065 },
   ],
 };
 
