@@ -13,7 +13,7 @@
 - **样式**：Tailwind CSS 4（CSS 优先配置）+ 自定义玻璃拟态组件类
 - **图标**：lucide-react（品牌图标自行维护在 `components/icons/Brand.tsx`）
 - **内容**：Markdown 文件（`gray-matter` + `marked` 解析）
-- **留言板**：Giscus（基于 GitHub Discussions，无需服务器与密钥）
+- **留言板**：Supabase（云端数据库，访客无需 GitHub 登录）
 - **动效**：CSS 动画 + IntersectionObserver + Canvas（点击星光 / 鼠标拖尾 / 彩蛋）
 
 ## 快速开始
@@ -59,7 +59,7 @@ athy-cottage/
 | 想改什么 | 改哪里 |
 | --- | --- |
 | 站点标题、简介、头像、社交链接、备案、歌单 | `site.config.ts` |
-| 留言板（Giscus） | `site.config.ts` 的 `giscus` 字段 |
+| 留言板（Supabase） | `.env.production` 与 `components/messages/SupabaseComments.tsx` |
 | 文章 | 在 `content/posts/` 新建 `xxx.md`，frontmatter 字段：`title / date / category / tags / cover / excerpt` |
 | 说说 | `data/moments.ts` |
 | 照片墙 | 把图片放进 `public/photos/`，再改 `data/photos.ts` 的 `src` |
@@ -103,34 +103,23 @@ playlist: [
 **为什么要有这个清单**：播放器只对清单里真实存在的文件发起请求，所以没放音频时
 不会产生 404 请求，控制台保持干净；`/music` 页面会给未上传的曲目显示「未上传」标签。
 
-## 留言板（Giscus）
+## 留言板（Supabase）
 
-留言板用 [Giscus](https://giscus.app/zh-CN)：**不需要服务器、不需要数据库、不需要任何密钥**，
-留言直接存进你自己的 GitHub 仓库的 Discussions 里，部署在 Vercel 或静态托管都能用。
+留言板使用 Supabase 云端数据库，访客填写昵称和正文后即可发布，不需要 GitHub 登录。
+前端只使用公开的 anon key，数据权限由数据库 RLS 控制。
 
-唯一的代价：访客需要登录 GitHub 账号才能留言。如果你需要「匿名留言」，
-可以换成 Waline / Twikoo（需要额外部署一个服务端）。
+环境变量写在 `.env.production`（生产构建）和 `.env.local`（本地开发）：
 
-### 三步配置
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://你的项目.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=你的公开anonKey
+```
 
-1. **开启 Discussions**：仓库 → Settings → General → Features → 勾选 `Discussions`
-2. **安装 giscus App**：打开 https://github.com/apps/giscus → Install → 只授权这一个仓库
-3. **填两个值**：打开 https://giscus.app/zh-CN ，填写仓库名 `AthyLin/athylin-homepage`，
-   选一个分类（推荐新建 `Announcements`），页面下方会生成一段脚本，把其中的
-   `data-category` 和 `data-category-id` 填到 `site.config.ts`：
+`comments` 表使用 `id`、`page`、`nickname`、`content`、`created_at`、`is_visible` 字段。
+anon 角色只允许读取已显示留言和新增 `messages` 页留言，不允许更新或删除。
+违规留言可以在 Supabase Table Editor 中将 `is_visible` 改为 `false`，或直接删除。
 
-   ```ts
-   giscus: {
-     repo: "AthyLin/athylin-homepage",
-     repoId: "R_kgDOT-Qaeg",       // 已经帮你填好
-     category: "Announcements",     // ← 换成你选的分类名
-     categoryId: "DIC_kwDO...",     // ← 换成对应的一长串 ID
-   },
-   ```
-
-填好之前，`/messages` 页面会显示一份带步骤的引导卡片（不会空白）；填好后刷新即可看到评论区。
-
-留言会以 Discussion 的形式出现在仓库的 Discussions 里，你可以随时删除、加锁或设成公告。
+`SERVICE_ROLE_KEY` 权限极高，只能放在可信服务端，绝不能写进 `NEXT_PUBLIC_` 变量或前端代码。
 
 ## 控制台出现 404
 
@@ -142,7 +131,7 @@ playlist: [
 ## 功能说明
 
 - **主题**：首屏内联脚本读取 `localStorage` / 系统偏好，避免深色模式闪白；导航栏可切换。
-- **留言板**：Giscus 组件见 `components/messages/GiscusComments.tsx`，会跟随站点深浅色主题。
+- **留言板**：Supabase 组件见 `components/messages/SupabaseComments.tsx`，支持无需登录直接留言。
 - **文章**：Markdown 存 `content/posts/`，构建期解析；详情页有目录高亮、点赞、评论演示、
   上一篇/下一篇；列表页支持搜索 + 分类 + 标签筛选。
 - **音乐播放器**：全站底部常驻，`/music` 页可点播；没有音频文件时进入演示模式。
@@ -159,8 +148,7 @@ npm run build     # 构建
 npm start         # 自有服务器启动
 ```
 
-因为留言板走 Giscus（纯前端 + GitHub），**不需要配置任何环境变量**，
-纯静态托管（如 GitHub Pages）也能完整使用。
+生产构建会读取 `.env.production` 中的 Supabase 公开配置，纯静态托管也能直接留言。
 
 ### 部署到 Vercel
 
@@ -189,7 +177,7 @@ npm start         # 自有服务器启动
 3. **Root Directory 留空** —— 项目文件在仓库根目录。只有当项目被放在子目录里
    （例如 `athy-cottage/`）才需要填子目录名。
 
-4. **Deploy**。不需要环境变量。
+4. **Deploy**。仓库已包含生产环境所需的 Supabase 公开配置。
 
 5. **访问不到时检查域名**：Vercel 项目的正式域名在 Settings → Domains 里；
    团队（team）下的项目域名通常形如 `项目名-团队名.vercel.app`。
@@ -218,4 +206,4 @@ npm start         # 自有服务器启动
   npx serve out                                                  # 或任意静态服务器
   ```
 
-- GitHub Pages 不需要任何环境变量，留言板走 Giscus（浏览器直连 GitHub）。
+- GitHub Pages 会在构建时读取 `.env.production`，留言由浏览器直连 Supabase。

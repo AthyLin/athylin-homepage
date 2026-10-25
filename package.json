@@ -13,6 +13,7 @@
     "audit": "node scripts/audit.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.47.0",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Mail } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
-import GiscusComments from "@/components/messages/GiscusComments";
+import SupabaseComments from "@/components/messages/SupabaseComments";
 import FadeIn from "@/components/ui/FadeIn";
 
 export const metadata: Metadata = {
@@ -17,13 +17,7 @@ export default function MessagesPage() {
       </FadeIn>
 
       <FadeIn delay={0.06}>
-        <GiscusComments />
-      </FadeIn>
-
-      <FadeIn delay={0.12}>
-        <p className="mt-4 px-2 text-center text-[11px] leading-relaxed text-gray-500 dark:text-gray-400">
-          留言需要登录 GitHub 账号（评论会保存在本站的 GitHub Discussions 里，你随时可以删除）。
-        </p>
+        <SupabaseComments />
       </FadeIn>
     </div>
   );
