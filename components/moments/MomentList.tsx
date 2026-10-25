@@ -33,6 +33,16 @@ export default function MomentList({ moments }: { moments: Moment[] }) {
     });
   };
 
+  if (moments.length === 0) {
+    return (
+      <div className="glass-card flex flex-col items-center gap-2 p-12 text-center">
+        <p className="text-3xl">🌿</p>
+        <p className="text-sm text-gray-600 dark:text-gray-300">暂时还没有说说</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">发布新内容后会显示在这里</p>
+      </div>
+    );
+  }
+
   return (
     <ol className="relative flex flex-col gap-4 border-l border-white/50 pl-5 sm:pl-7 dark:border-white/10">
       {moments.map((moment) => {
@@ -54,7 +64,10 @@ export default function MomentList({ moments }: { moments: Moment[] }) {
                 </time>
               </header>
 
-              <p className="mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200">{moment.content}</p>
+              {/* whitespace-pre-line：让说说正文里的换行原样显示（长文小练笔分段用） */}
+              <p className="mt-3 text-sm leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-200">
+                {moment.content}
+              </p>
 
               {moment.images?.length ? (
                 <div className={cn("mt-3 grid gap-2", moment.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>

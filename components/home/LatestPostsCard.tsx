@@ -49,6 +49,11 @@ export default function LatestPostsCard({ posts }: { posts: PostMeta[] }) {
             </Link>
           </li>
         ))}
+        {posts.length === 0 ? (
+          <li className="grid flex-1 place-items-center p-4 text-center text-xs text-gray-500 dark:text-gray-400">
+            暂时还没有文章
+          </li>
+        ) : null}
       </ul>
     </section>
   );

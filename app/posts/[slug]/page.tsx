@@ -13,7 +13,13 @@ import { formatDate } from "@/lib/utils";
 type PageProps = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  const posts = getAllPosts();
+
+  // 静态导出要求动态路由至少有一个参数；无文章时用占位参数完成构建，
+  // 该占位页会在下面通过 notFound() 输出为 404。
+  if (posts.length === 0) return [{ slug: "__empty__" }];
+
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

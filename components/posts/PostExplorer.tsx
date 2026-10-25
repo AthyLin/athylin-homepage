@@ -123,8 +123,12 @@ export default function PostExplorer({ posts, categories, tags }: PostExplorerPr
       {filtered.length === 0 ? (
         <div className="glass-card flex flex-col items-center gap-2 p-12 text-center">
           <p className="text-3xl">🍃</p>
-          <p className="text-sm text-gray-600 dark:text-gray-300">没有找到符合条件的文章</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">换个关键词或标签试试</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            {posts.length === 0 ? "暂时还没有文章" : "没有找到符合条件的文章"}
+          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {posts.length === 0 ? "发布新文章后会显示在这里" : "换个关键词或标签试试"}
+          </p>
         </div>
       ) : (
         <div className="flex flex-col gap-3.5">

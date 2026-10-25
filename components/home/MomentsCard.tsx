@@ -35,6 +35,11 @@ export default function MomentsCard({ moments }: { moments: Moment[] }) {
             </div>
           </li>
         ))}
+        {moments.length === 0 ? (
+          <li className="grid flex-1 place-items-center p-4 text-center text-xs text-gray-500 dark:text-gray-400">
+            暂时还没有说说
+          </li>
+        ) : null}
       </ul>
     </section>
   );

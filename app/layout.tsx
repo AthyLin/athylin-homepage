@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.title}`,
   },
   description: siteConfig.description,
-  icons: { icon: asset("/favicon.svg") },
+  icons: { icon: asset("/favicon.png") },
   alternates: { types: { "application/rss+xml": asset("/feed.xml") } },
   openGraph: {
     title: siteConfig.title,
